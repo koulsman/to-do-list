@@ -15,21 +15,12 @@ export default function Signup() {
   const [error, setError] = useState('');
   const [userCreation, setUserCreation] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     setError('');
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
       
-      await setDoc(doc(db, 'users', user.uid), {
-        username,
-        email
-      });
-
-      console.log('User created successfully');
-      setUserCreation(true);
     } catch (err) {
       setError(err.message);
     }
@@ -43,7 +34,7 @@ export default function Signup() {
 
             {error && <p style={{ color: 'red' }}>{error}</p>}
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSignUp}>
               <section>
               <div>
                 <label>Username:</label>
