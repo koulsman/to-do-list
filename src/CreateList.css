@@ -1,0 +1,11 @@
+.list {
+    /* width: 10em; */
+    height: auto;
+    color: black;
+    background-color: white;
+    
+}
+
+.buttonDone {
+    float: right;
+  }
