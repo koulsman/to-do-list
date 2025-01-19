@@ -1,82 +1,37 @@
 import { useDisclosure } from '@mantine/hooks';
-import { Modal, Button } from '@mantine/core';
-import React, { useState } from 'react';
-import { auth, db } from './firebase/firebaseConfig';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
-import { Link } from 'react-router-dom';
-import Login from './Login';
+import { Modal, Button, TextInput } from '@mantine/core';
+import './Css/SignUp.css'; // Εισάγεις το CSS αρχείο σου
 
-export default function Signup() {
-  const [opened, setOpened] = useState(false);
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [userCreation, setUserCreation] = useState(false);
+export default function SignUp() {
+  const [opened, { open, close }] = useDisclosure(false);
 
-  const handleSignUp = async (e) => {
-    e.preventDefault();
-    setError('');
-
-    try {
-      
-    } catch (err) {
-      setError(err.message);
-    }
-  };
+  function handleSignUp() {
+    // Λογική για το signup
+  }
 
   return (
     <>
-      <div>
-        {opened === true && userCreation === false ? 
-          <Modal opened={opened} onClose={() => setOpened(false)} title="Sign Up">
+      <Modal opened={opened} onClose={close} title="Sign Up" centered>
+        {/* Modal content */}
+        <div>Add your Name</div>
+        <TextInput placeholder="Enter your name" />
+        
+        <div>Add your Email</div>
+        <TextInput placeholder="Enter your email" />
 
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+        <div>Add your Password</div>
+        <TextInput placeholder="Enter your password" type="password" />
+        
+        {/* Εδώ κάνουμε χρήση className με σωστό τρόπο */}
+        <Button className="SignUpButton" onClick={handleSignUp}>
+          Sign Up
+        </Button>
+      </Modal>
 
-            <form onSubmit={handleSignUp}>
-              <section>
-              <div>
-                <label>Username:</label>
-                <input
-                  data-autofocus
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  required
-                />
-              </div>
-              <div>
-                <label>Email:</label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <div>
-                <label>Password:</label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-              <button type="submit">Sign Up</button>
-              </section>
-              <section>
-              <label>If you already have an account</label>
-              
-              <Login />
-              </section>
-            </form>
-          </Modal>
-          :
-          <Button onClick={() => setOpened(true)}>Sign Up</Button>
-        }
-      </div>
+<Button variant="default" onClick={open}>
+        Sign Up
+      </Button>
+
     </>
   );
 }

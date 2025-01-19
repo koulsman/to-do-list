@@ -1,4 +1,6 @@
+import { TextInput, Button } from "@mantine/core";
 import { useCallback } from "react";
+import './Buttons.css'
 
 
 export default function ListItem({listItem,setList,index}) {
@@ -29,10 +31,10 @@ export default function ListItem({listItem,setList,index}) {
     
 
     return (
-        <div>
+        <div style={{display: 'flex', marginTop: "1em"}}>
             
-            <input type="text" onChange={onChangeHandler} value={listItem}  />
-            <button onClick={deleteListItemHandler} value={listItem}>delete</button>
+            <TextInput type="text" onChange={onChangeHandler} value={listItem}  />
+            <Button variant="filled" className="buttonVariant" onClick={deleteListItemHandler} value={listItem}>Delete</Button>
         </div>
     );
 }

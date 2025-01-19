@@ -1,8 +1,7 @@
-
 import './App.css';
 import './CreateList.css'
 import Card from './Card';
-import Header from './Header'
+import './'
 import ListItem from './ListItem';
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from "react-router-dom";
@@ -11,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { atom, useAtom } from 'jotai';
 import { storedList } from './App';
 import {useAtomWithStorage} from 'jotai/utils';
+import { TextInput, Button } from '@mantine/core';
 
 
 function CreateList() {
@@ -26,7 +26,7 @@ function CreateList() {
     return title;
   }
 
-  const addHandler = (event) => {
+  const addListItemHandler = (event) => {
     event.preventDefault();
     setList(listItems => {
       const newArray = [...listItems, ''];
@@ -57,31 +57,20 @@ function CreateList() {
 
 
 
-  // event.preventDefault();
-
-
-  //   setFinalList(finalList => {
-  //     const submitArray = [...finalList,''];
-  //     console.log(finalList);
-  //     return submitArray;
-  //   })
-  //   console.log("final list kai fl");
-  //   console.log(finalList);
-
-  //   navigate("/ViewLists");
-  //   return finalList;
-
 
 
 return (
   <div className="CreateList">
-    <Header />
+
     <Card>
       <form onSubmit={formSubmitHandler} className='form'>
-        <textarea placeholder="enter your list's name" onChange={(event) => setTitle(event.target.value)}>{titleHandler}</textarea>
-        <button onClick={addHandler}>Add list item</button>
+        <div style={{color: "00cccc"}}>
+        <TextInput label="Add Title" placeholder="Add your Title"
+         onChange={(event) => setTitle(event.target.value)}/>
+        <Button onClick={addListItemHandler}>Add list item</Button>
+        </div>
         <div>{list.map((x, index) => <ListItem listItem={x} key={index} index={index} setList={setList} />)}</div>
-        <div><button type="submit" className="button">Submit</button></div>
+        <div><Button className="" type="submit">Submit</Button></div>
       </form>
     </Card>
   </div>

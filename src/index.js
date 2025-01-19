@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createTheme, MantineProvider } from '@mantine/core';
-import { ColorSchemeScript } from '@mantine/core';
-import { BrowserRouter } from 'react-router-dom';
+import { MantineProvider, createTheme } from '@mantine/core';
+import { BrowserRouter, Router, Routes, Route } from 'react-router-dom';
 
 const theme = createTheme({
   /** Put your mantine theme override here */
@@ -14,9 +13,8 @@ const theme = createTheme({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <MantineProvider theme={theme}>
-    <ColorSchemeScript />
     <React.StrictMode>
-      <BrowserRouter>
+      <BrowserRouter> {/* Τοποθετούμε το App μέσα στο BrowserRouter */}
         <App />
       </BrowserRouter>
     </React.StrictMode>

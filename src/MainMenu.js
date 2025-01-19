@@ -1,34 +1,32 @@
-import './App.css';
 import './CreateList';
 import './ViewLists';
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";  
+import Card from './Card';  
 
-
-import Card from './Card';
-import CreateList from './CreateList';
-import ViewLists from './ViewLists';
-import Header from './Header'
 export default function MainMenu() {
+  const navigate = useNavigate();
+
+  // navigation for CreateList and ViewLists
+
+  function handleCreateList() {
+    navigate('/CreateList');
+  }
+
+  function handleViewLists() {
+    navigate('/ViewLists');
+  }
+
+
+
   return (
-
     <div className='Menu' id="menu">
-      
-      <Link to="/CreateList"><Card name="Create a New List" /></Link>
-      <Link to="/ViewLists"><Card name="View your lists" /></Link>
+      <div onClick={handleCreateList}>
+        <Card name="CREATE  New List"   />
+      </div>
 
-
-      <Routes>
-        {/* <Card name="Create a New List" text="click here to create a new to do list"> */}
-          <Route exact path="/CreateList" element={<CreateList />}>
-          </Route>
- 
-        
-          <Route exact path="/ViewLists" element={<ViewLists />}>
-          </Route>
-      </Routes>
+      <div onClick={handleViewLists}> 
+        <Card name="VIEW your lists"/>
+      </div>
     </div>
   );
-
 }
-
-
