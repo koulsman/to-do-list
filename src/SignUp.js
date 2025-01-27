@@ -64,12 +64,7 @@ export default function SignUp() {
     <>
       <Modal  opened={opened} onClose={close} title="Sign Up" centered>
         {/* Modal content */}
-        <Switch
-      defaultChecked
-      color="#03fc88"
-      onChange={(event) => setChecked(event.currentTarget.checked)}
-      label="for test mode, slide"
-    />
+        
         
         <TextInput style={{margin: '1em 0 1em 0'}} placeholder="Enter your name" value={name} onChange={(e) => nameHandler(e.target.value)}/>
         
