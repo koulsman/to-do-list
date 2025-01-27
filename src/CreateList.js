@@ -1,7 +1,7 @@
 import './App.css';
 import './CreateList.css'
 import Card from './Card';
-import './'
+import './Buttons.module.css';
 import ListItem from './ListItem';
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,7 @@ import { atom, useAtom } from 'jotai';
 import { storedList } from './App';
 import {useAtomWithStorage} from 'jotai/utils';
 import { TextInput, Button } from '@mantine/core';
+import addListItem from './svg/add-listitem.svg'
 
 
 function CreateList() {
@@ -61,16 +62,51 @@ function CreateList() {
 
 return (
   <div className="CreateList">
+    <h1 className="Page">CREATE LIST</h1>
 
     <Card>
       <form onSubmit={formSubmitHandler} className='form'>
         <div style={{color: "00cccc"}}>
-        <TextInput label="Add Title" placeholder="Add your Title"
-         onChange={(event) => setTitle(event.target.value)}/>
-        <Button onClick={addListItemHandler}>Add list item</Button>
+        <TextInput  onChange={(event) => setTitle(event.target.value)}
+  placeholder="ADD TITLE"
+
+  styles={{
+    input: {
+      padding: '0.5em',
+      width: '6em',
+      backgroundColor: '#03fc88',
+      border: 'none',
+      outline: 'none',
+      color: 'black',
+      fontSize: '1.2em',
+      // marginBottom: '0.5em'
+    },
+    placeholder: {
+      color: 'black',
+      fontSize: '5em',
+      textAlign: 'center'
+      
+    },
+  }}
+/>
+
+        
+        
+        {/* <Button style={{ marginTop: '5em',backgroundColor: "#00cccc",color: "black",
+          marginInlineEnd: "1em",
+        }} 
+         </Button> */}
+         <img style={{height:'2em', width:'2em',marginTop: '2.6em', background: '#03fc88', borderRadius: '50%'}}src={addListItem} alt='Add List Item' onClick={addListItemHandler}/>
         </div>
         <div>{list.map((x, index) => <ListItem listItem={x} key={index} index={index} setList={setList} />)}</div>
-        <div><Button className="" type="submit">Submit</Button></div>
+        <div>
+          <Button style={{ backgroundColor: "#03fc88",color: "black",
+                          marginInlineEnd: "1em"
+                        }} 
+                        type="submit">
+                          SUBMIT LIST
+          </Button>
+        </div>
       </form>
     </Card>
   </div>

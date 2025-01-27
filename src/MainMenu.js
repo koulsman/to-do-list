@@ -19,13 +19,13 @@ export default function MainMenu() {
 
 
   return (
-    <div className='Menu' id="menu">
+    <div className='Menu' id="menu" style={{display: "flex",justifyContent: "center"}}>
       <div onClick={handleCreateList}>
-        <Card name="CREATE  New List"   />
+        <Card name="CREATE" secondName= "a new list"   />
       </div>
 
       <div onClick={handleViewLists}> 
-        <Card name="VIEW your lists"/>
+        <Card name="VIEW" secondName= "your lists"/>
       </div>
     </div>
   );

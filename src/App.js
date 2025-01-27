@@ -13,7 +13,8 @@ import SignUp from './SignUp';
 import Login from './Login';
 import { createTheme, MantineProvider } from '@mantine/core';
 import { useState } from 'react';
-import './Buttons.css'
+import './Buttons.module.css';
+import TODO from './TODO';
 
 // Jotai atoms
 export const storedList = atom([]);
@@ -24,21 +25,30 @@ export const Email = atom();
 function App() {
   const theme = createTheme({
     /** Αν χρειάζεται, μπορείς να προσθέσεις παραμετροποιήσεις εδώ */
+    Button : {
+      color: "#00cccc", /* Αφαιρέθηκαν τα quotes */
+      backgroundColor: 'black'
+      }
   });
 
   const [user, setUser] = useState([]);
 
   return (
     <MantineProvider theme={theme}>
-      <header>
-        <h1>
-          {/* Το SignUp είναι εδώ, όπως είναι στο παράδειγμά σου */}
-          <SignUp />
-        </h1>
-      </header>
+      
       
       <main>
+      
+      
         <div className="App">
+        <h1><TODO/></h1>
+        <div>
+        <SignUp/>
+        <Login/>
+        </div>
+        
+        
+      
           {/* Διαδρομές για τις διάφορες σελίδες */}
           <Routes>
             <Route index element={<MainMenu />} />

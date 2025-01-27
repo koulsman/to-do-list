@@ -1,10 +1,11 @@
 .SignUpButton {
-        background-color: black;
-        color: white;
-       margin: auto;
+        background-color: #03fc88;
+        color: black;
+        
 }
 
 .SignUpButton:hover {
     background-color: black;
-    color: gold;
+    color: #03fc88;
 }
+

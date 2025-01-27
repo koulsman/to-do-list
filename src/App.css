@@ -12,8 +12,8 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  
+  
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -60,5 +60,18 @@
 .Menu { 
   display: flex;
 }
+
+.Page {
+  font-size: 1.3em;
+  background:  #03fc88;
+  
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+  font-weight: 800;
+}
+
+
 
 

@@ -1,0 +1,10 @@
+.Button.BlackButton {
+    color: #00cccc; /* Αφαιρέθηκαν τα quotes */
+    background-color: black;
+}
+
+.VariantButton {
+    background-color: #00cccc; /* Αφαιρέθηκαν τα quotes */
+    color: black;
+    margin-inline-end: 1em; /* Αφαιρέθηκαν τα quotes */
+}

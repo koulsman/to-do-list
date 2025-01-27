@@ -8,6 +8,10 @@ import { BrowserRouter, Router, Routes, Route } from 'react-router-dom';
 
 const theme = createTheme({
   /** Put your mantine theme override here */
+  Button : {
+    color: "#00cccc", /* Αφαιρέθηκαν τα quotes */
+    backgroundColor: 'black'
+    }
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
