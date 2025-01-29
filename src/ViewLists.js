@@ -28,10 +28,19 @@ function ViewLists() {
     //  const a = finalList.map((x) => (x.title))
     console.log(finalList)
 
-    const mySearch = finalList.filter((element,index) => (element['Mytitle'].trim().toLowerCase().startsWith(typedValue)));
+    const mySearch = finalList.filter((element,index) => (element['Mytitle'].trim().toUpperCase().startsWith(typedValue)));
+
+    
     console.log(JSON.stringify(mySearch))
     setSearchResults(mySearch)
-    
+    console.log(searchResults)
+    if (mySearch.length == 0) {
+      console.log(searchResults.length)
+      console.log('aa')
+      const mySearch = finalList.filter((element,index) => (element['Mytitle'].trim().toLowerCase().startsWith(typedValue)));
+      console.log(JSON.stringify(mySearch))
+    setSearchResults(mySearch)
+    }
     
   }
   

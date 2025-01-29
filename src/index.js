@@ -16,7 +16,7 @@ const theme = createTheme({
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <MantineProvider theme={theme}>
+  <MantineProvider defaultColorScheme="dark">
     <React.StrictMode>
       <BrowserRouter> {/* Τοποθετούμε το App μέσα στο BrowserRouter */}
         <App />
