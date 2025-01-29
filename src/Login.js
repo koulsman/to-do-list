@@ -52,6 +52,11 @@ export default function Login() {
       setEmail('johndoe@gmail.com')
       setPassword('johnnyBeGood')
     }
+    else if(!checked) {
+      setName('')
+      setEmail('')
+      setPassword('')
+    }
     if(name.length && 
       email.length && 
       email.includes('@') && 

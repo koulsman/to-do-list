@@ -43,7 +43,7 @@ function App() {
         <div className="App">
         <h1><TODO/></h1>
         <div>
-        <SignUp/>
+        {/* <SignUp/> */}
         <Login/>
         </div>
         
