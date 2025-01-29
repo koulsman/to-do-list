@@ -4,6 +4,7 @@ const User = require('./UserSchema.js')
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+// const URI = 'mongodb+srv://stevekoulas:ZsLFyRO6eq2BhEMv@mytodos.pyikc.mongodb.net/?retryWrites=true&w=majority&appName=MyTODOs';
 const URI = 'mongodb+srv://stevekoulas:ZsLFyRO6eq2BhEMv@mytodos.pyikc.mongodb.net/?retryWrites=true&w=majority&appName=MyTODOs';
 const axios = require('axios');
 const port = 3001;
@@ -16,7 +17,10 @@ app.use(bodyParser.json());
 
  console.log(User, URI)
 
-mongoose.connect(URI)
+mongoose.connect(URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
     .then(() => {
         console.log('MongoDB Connected to users_db!')
         app.listen(port, () => {

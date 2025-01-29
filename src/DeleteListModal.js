@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDisclosure } from '@mantine/hooks';
 import { Modal, Button } from '@mantine/core';
 import { useNavigate } from "react-router-dom";
+import deleteListImg from "./svg/delete-list.svg"
 
 export default function DeleteListModal({finalList,index}) {
 
@@ -20,7 +21,11 @@ export default function DeleteListModal({finalList,index}) {
         <Button onClick={deleteList}>yes,delete this list</Button>
       </Modal>
 
-      <Button onClick={open}>delete list</Button>
+      
+      <img style={{height:'1.3em', width:'1.3em', background: '#03fc88', borderRadius: '0.1em', border: "1em black" }} src={deleteListImg} alt='Delete' 
+             onClick={open}
+            />
+      
     </>
   );
 }
