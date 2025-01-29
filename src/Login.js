@@ -56,6 +56,7 @@ export default function Login() {
       setName('')
       setEmail('')
       setPassword('')
+      setButtonState(true)
     }
     if(name.length && 
       email.length && 
