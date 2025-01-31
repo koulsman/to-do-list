@@ -10,6 +10,6 @@ const ListSchema = new Schema({
     collection: 'lists' // Specify the collection name explicitly
   });
 
-const Lists = mongoose.model('lists', UserSchema);
+const Lists = mongoose.model('lists', ListSchema);
 console.log("database:MyTODOs_db, collection:lists")
 module.exports = Lists;

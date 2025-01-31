@@ -114,7 +114,7 @@ function ViewAndEditList() {
               style={{
                 height: "2em",
                 width: "2em",
-                marginTop: "2.6em",
+                // marginTop: "2.6em",
                 background: "#03fc88",
                 borderRadius: "50%",
               }}

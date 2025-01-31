@@ -15,7 +15,8 @@ import { createTheme, MantineProvider } from '@mantine/core';
 import { useState } from 'react';
 import './Buttons.module.css';
 import TODO from './TODO';
-
+import Info from './Info'
+import "./Css/SignUp.css"
 // Jotai atoms
 export const storedList = atom([]);
 export const loggedIn = atom([]);
@@ -45,6 +46,7 @@ function App() {
         <div>
         {/* <SignUp/> */}
         <Login/>
+       
         </div>
         
         

@@ -2,6 +2,8 @@ import './CreateList';
 import './ViewLists';
 import { useNavigate } from "react-router-dom";  
 import Card from './Card';  
+import Info from './Info'
+
 
 export default function MainMenu() {
   const navigate = useNavigate();
@@ -19,6 +21,7 @@ export default function MainMenu() {
 
 
   return (
+    <div>
     <div className='Menu' id="menu" style={{display: "flex",justifyContent: "center"}}>
       <div onClick={handleCreateList}>
         <Card name="CREATE" secondName= "a new list"   />
@@ -27,6 +30,9 @@ export default function MainMenu() {
       <div onClick={handleViewLists}> 
         <Card name="VIEW" secondName= "your lists"/>
       </div>
+
+    </div>
+    <Info/>
     </div>
   );
 }

@@ -46,27 +46,32 @@ export default function Login() {
    
    }
 
+   useEffect(() => {
+    if (checked) {
+      setName('john doe');
+      setEmail('johndoe@gmail.com');
+      setPassword('johnnyBeGood');
+    } else {
+      setName('');
+      setEmail('');
+      setPassword('');
+      setButtonState(true);
+    }
+  }, [checked]); // Ενημερώνει τα πεδία μόνο όταν αλλάζει το checked
+  
   useEffect(() => {
-    if(checked) {
-      setName('john doe')
-      setEmail('johndoe@gmail.com')
-      setPassword('johnnyBeGood')
+    if (
+      name.length > 0 &&
+      email.length > 0 &&
+      email.includes('@') &&
+      password.length > 0
+    ) {
+      setButtonState(false);
+    } else {
+      setButtonState(true);
     }
-    else if(!checked) {
-      setName('')
-      setEmail('')
-      setPassword('')
-      setButtonState(true)
-    }
-    if(name.length && 
-      email.length && 
-      email.includes('@') && 
-      password.length> 0 
-     ) {
-      setButtonState(false)
-     
-    }
-  },[buttonState,password,name,email,checked])
+  }, [name, email, password]); // Ξεχωριστός έλεγχος για το κουμπί
+  
  
   
   function ReTypedPassword(e) {
