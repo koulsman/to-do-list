@@ -78,6 +78,7 @@ export default function Info() {
         <a href= "https://www.linkedin.com/in/stauros-koulas-a708aa10a/">Click to view my Profile in LinkedIn</a>
         <br/>
         <br/>
+        <br/>
         <p>©{date} Stauros Koulas. All Rights Reserved</p>
       </Tabs.Panel>
     </Tabs>

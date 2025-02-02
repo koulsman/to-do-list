@@ -11,8 +11,8 @@ import { useRef, useCallback,useState } from 'react';
 import ViewAndEditList from './ViewAndEditList';
 import CreatedLists from './CreatedLists';
 import CreatedListsHovered from './CreatedListsHovered';
-
-import { SegmentedControl, Grid, Autocomplete } from '@mantine/core';
+import { useEffect } from 'react';
+import { SegmentedControl, Grid, Autocomplete, Button } from '@mantine/core';
 
 
 
@@ -21,7 +21,42 @@ function ViewLists() {
   const [finalList,setFinalList] = useAtom(storedList);
   const [searchResults,setSearchResults] = useState([])
   const [autocompleteValue,setAutocompleValue] = useState('')
+  const [segmentedControlValue,setSegmentedControlValue] = useState('All Lists')
+  const [selectedList,setSelectedList] = useState(finalList)
+  
 
+  function deleteAutocompleValueHandler() {
+    setAutocompleValue('')
+  }
+
+  function segmentedControlHandler(event){
+      console.log(event)
+      setSegmentedControlValue(event) 
+      
+      
+     
+  }
+
+  useEffect(() => {
+
+    if(segmentedControlValue === 'All Lists') {
+      console.log(segmentedControlValue)
+      setSelectedList(finalList)
+}
+    else if(segmentedControlValue === 'Undone') {
+          console.log(segmentedControlValue)
+           let mappedList = finalList.filter((element,index) => (element["isDone"] === false))
+          setSelectedList(mappedList)
+          console.log(mappedList)
+    }
+    else if (segmentedControlValue === 'isDone') {
+
+      let mappedList = finalList.filter((element,index) => (element["isDone"] === true))
+      setSelectedList(mappedList)
+     
+    }
+
+  },[segmentedControlHandler,selectedList,segmentedControlValue])
   function searchHandler(typedValue) {
     setAutocompleValue(typedValue);
       console.log(typedValue + "changed")
@@ -57,6 +92,10 @@ function ViewLists() {
     console.log(finalList);
     console.log(index);
 }
+
+useEffect(() => {
+  console.log(finalList)
+},[finalList])
   
   return (
     <div >
@@ -68,7 +107,10 @@ function ViewLists() {
       </header>
       
           <Grid  justify="flex-start" left="0">
-          <Grid.Col span={4}><SegmentedControl  color="#03fc88" className='' data={['My Lists', 'Done']} /></Grid.Col>
+          {autocompleteValue === '' ?
+           <Grid.Col span={4}><SegmentedControl  color="#03fc88" value={segmentedControlValue} onChange={(e) =>segmentedControlHandler(e)} data={['All Lists','Undone', 'isDone']} /></Grid.Col>
+          :
+          <Grid.Col span={4}><Button color="#03fc88" onClick={deleteAutocompleValueHandler}>Delete</Button></Grid.Col>}
           <Grid.Col span={7} style={{marginLeft: "1em"}}><Autocomplete value={autocompleteValue} onChange={searchHandler}
       placeholder="Search lists"
      
@@ -78,11 +120,11 @@ function ViewLists() {
           {/* sjk */}
           
 
-{ autocompleteValue === '' ?  finalList.map((element,index) => 
+{ autocompleteValue === ''  ?  selectedList.map((element,index) => 
 
 
 
-<CreatedLists  cardHovered={finalList[index]["Mylist"] } cardButton={finalList[index]["isDone"] ? 
+<CreatedLists  cardHovered={selectedList[index]["Mylist"] } cardButton={selectedList[index]["isDone"] ? 
   <button className="buttonDone" onClick={() => listDoneHandler(index)}>
     <svg   xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
       <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>

@@ -22,6 +22,8 @@ export default function MainMenu() {
 
   return (
     <div>
+      <br />
+      <br />
     <div className='Menu' id="menu" style={{display: "flex",justifyContent: "center"}}>
       <div onClick={handleCreateList}>
         <Card name="CREATE" secondName= "a new list"   />
