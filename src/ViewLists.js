@@ -106,12 +106,12 @@ useEffect(() => {
 
       </header>
       
-          <Grid  justify="flex-start" left="0">
+          <Grid  className="" style={{marginBottom: "1em"}} justify="flex-start" left="0">
           {autocompleteValue === '' ?
-           <Grid.Col span={4}><SegmentedControl  color="#03fc88" value={segmentedControlValue} onChange={(e) =>segmentedControlHandler(e)} data={['All Lists','Undone', 'isDone']} /></Grid.Col>
+           <Grid.Col span={2} style={{display: "flex", alignItems: "top"}}><SegmentedControl  color="#03fc88" value={segmentedControlValue} onChange={(e) =>segmentedControlHandler(e)} data={['All Lists','Undone', 'isDone']} /></Grid.Col>
           :
-          <Grid.Col span={4}><Button color="#03fc88" onClick={deleteAutocompleValueHandler}>Delete</Button></Grid.Col>}
-          <Grid.Col span={7} style={{marginLeft: "1em"}}><Autocomplete value={autocompleteValue} onChange={searchHandler}
+          <Grid.Col span={2}><Button color="#03fc88" onClick={deleteAutocompleValueHandler}>Delete</Button></Grid.Col>}
+          <Grid.Col span={8} style={{marginLeft: "1em"}}><Autocomplete value={autocompleteValue} onChange={searchHandler}
       placeholder="Search lists"
      
       /></Grid.Col>
