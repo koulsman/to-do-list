@@ -4,6 +4,7 @@ import './Css/SignUp.css'; // Εισάγεις το CSS αρχείο σου
 import './Card.css';
 import { useState, useEffect } from 'react';
 import SignUp from './SignUp';
+import axios from 'axios';
 
 export default function Login() {
   const [opened, { open, close }] = useDisclosure(false);
@@ -31,9 +32,21 @@ export default function Login() {
     setEmail(typedEmail)
   }
   
-  function handleLogin() {
+  async function handleLogin() {
     // Λογική για το signup
-    console.log(password)
+    console.log(email + password)
+    try {
+      const response = await axios.post("http://localhost:3001/users/login", {
+        email,
+        password,
+      });
+      console.log(response)
+      console.log("success")
+   
+    }
+    catch(error) {
+      console.log(error)
+    }
   }
   
   function TypedPassword(password)  {

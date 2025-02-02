@@ -30,11 +30,14 @@ export default function SignUp() {
   function handleSignUp() {
     // Λογική για το signup
     console.log(email +" :email," + name + " :name," + typedPassword + " :password")
-    let password = 5;
-    axios.post("http://localhost:3001/users", {name, email, password })
+    
+    axios.post("http://localhost:3001/users", {name, email, password : typedPassword })
     .then(res => {
       console.log(res);
       console.log(res.data);
+    })
+    .catch((error) => {
+      alert(error)
     })
   }
   
