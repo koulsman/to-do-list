@@ -1,7 +1,6 @@
 
 import './App.css';
 import { storedList } from './App';
-import { atom, useAtom } from 'jotai';
 import { Link, Routes, Route, useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import CreateList from './CreateList';
@@ -13,7 +12,8 @@ import CreatedLists from './CreatedLists';
 import CreatedListsHovered from './CreatedListsHovered';
 import { useEffect } from 'react';
 import { SegmentedControl, Grid, Autocomplete, Button } from '@mantine/core';
-
+import { atom, useAtom } from "jotai";
+import { loggedUserAtom, isLoggedInAtom } from "./LoggedUser";
 
 
 function ViewLists() {
@@ -23,8 +23,11 @@ function ViewLists() {
   const [autocompleteValue,setAutocompleValue] = useState('')
   const [segmentedControlValue,setSegmentedControlValue] = useState('All Lists')
   const [selectedList,setSelectedList] = useState(finalList)
+  const [loggedUser, setLoggedUser] = useAtom(loggedUserAtom);
+  const [isLoggedIn, setIsLoggedIn] = useAtom(isLoggedInAtom);
   
-
+  console.log("VIEW LISTS LOGGEDUSER"+  loggedUser+ "VIEW LIST LOGGED USER NAME" + loggedUser?.name)
+  console.log("VIEW LISTS IS LOGGED IN " + isLoggedIn)
   function deleteAutocompleValueHandler() {
     setAutocompleValue('')
   }
@@ -106,7 +109,7 @@ useEffect(() => {
 
       </header>
       
-          <Grid  className="" style={{marginBottom: "1em"}} justify="flex-start" left="0">
+          <Grid  className="ButtonAndSearchBar" style={{marginBottom: "1em"}} justify="flex-start" left="0">
           {autocompleteValue === '' ?
            <Grid.Col span={2} style={{display: "flex", alignItems: "top"}}><SegmentedControl  color="#03fc88" value={segmentedControlValue} onChange={(e) =>segmentedControlHandler(e)} data={['All Lists','Undone', 'isDone']} /></Grid.Col>
           :

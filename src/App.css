@@ -72,6 +72,12 @@
   font-weight: 800;
 }
 
+.ButtonAndSearchBar {
+  margin-bottom: 2em;
+}
 
-
-
+.GreenButton {
+  background-color: #03fc88;
+  color: black;
+  
+}

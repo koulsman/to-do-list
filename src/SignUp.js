@@ -4,6 +4,8 @@ import './Css/SignUp.css'; // Εισάγεις το CSS αρχείο σου
 import './Card.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { loggedUserAtom, isLoggedInAtom } from './LoggedUser';
+import { useAtom } from 'jotai';
 
 export default function SignUp() {
   const [opened, { open, close }] = useDisclosure(false);
@@ -13,7 +15,8 @@ export default function SignUp() {
   const [email,setEmail] = useState('');
   const [typedPassword, setTypedPassword] = useState('');
   const [retypedPassword, setRetypedPassword] = useState('');
-
+  const [loggedUser,setLoggedUser] = useAtom(loggedUserAtom)
+  const [isLoggedIn,setIsLoggedIn] = useAtom(isLoggedInAtom)
   // function testHandler() {
   //   setName('john doe')
   //   setEmail
@@ -35,6 +38,10 @@ export default function SignUp() {
     .then(res => {
       console.log(res);
       console.log(res.data);
+      
+      setLoggedUser(res.data)
+      console.log(loggedUser)
+      setIsLoggedIn(true)
     })
     .catch((error) => {
       alert(error)
@@ -73,23 +80,17 @@ export default function SignUp() {
     <>
       <Modal  opened={opened} onClose={close} title="Sign Up" centered>
         {/* Modal content */}
-        
-        
-        <TextInput style={{margin: '1em 0 1em 0'}} placeholder="Enter your name" value={name} onChange={(e) => nameHandler(e.target.value)}/>
-        
-        
-        <TextInput style={{margin: '1em 0 1em 0'}} placeholder="Enter your email" value={email} onChange={(e) => emailHandler(e.target.value)}/>
-
-       
-        <TextInput style={{margin: '1em 0 1em 0'}} placeholder="Enter your password" type="password" onChange={(e) => TypedPassword(e.target.value)}/>
-        <TextInput style={{margin: '1em 0 1em 0'}} placeholder="Re-enter your password" type="password" onChange={(e) => RetypedPassword(e.target.value)}/>
+        <TextInput label="Name:" style={{margin: '1em 0 1em 0'}} placeholder="Enter your Name" value={name} onChange={(e) => nameHandler(e.target.value)}/>
+        <TextInput label="Email:" style={{margin: '1em 0 1em 0'}} placeholder="Enter your Email. A valid email should contain a '@'" value={email} onChange={(e) => emailHandler(e.target.value)}/>
+        <TextInput label="Password:" style={{margin: '1em 0 1em 0'}} placeholder="Enter your Password" type="password" onChange={(e) => TypedPassword(e.target.value)}/>
+        <TextInput label="Retype password:" style={{margin: '1em 0 1em 0'}} placeholder="Re-enter your Password. Passwords must be the same" type="password" onChange={(e) => RetypedPassword(e.target.value)}/>
         {/* Εδώ κάνουμε χρήση className με σωστό τρόπο */}
-        <Button  onClick={handleSignUp} disabled={buttonState}>
+        <Button  style={{backgroundColor: "#03fc88", color: "black"}} onClick={handleSignUp} disabled={buttonState}>
   Sign Up
  </Button>
       </Modal>
 
-<Button className="SignUpButton"variant="default" onClick={open} >
+<Button style={{backgroundColor: "#03fc88", color: "black"}} variant="default" onClick={open} >
         Sign Up
       </Button>
 

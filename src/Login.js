@@ -5,8 +5,12 @@ import './Card.css';
 import { useState, useEffect } from 'react';
 import SignUp from './SignUp';
 import axios from 'axios';
+import { useAtom } from 'jotai';
+import {loggedUserAtom, isLoggedInAtom} from './LoggedUser'
 
 export default function Login() {
+  const [loggedUser,setLoggedUser] = useAtom(loggedUserAtom)
+  const [isLoggedIn,setIsLoggedIn] = useAtom(isLoggedInAtom)
   const [opened, { open, close }] = useDisclosure(false);
   
   const [buttonState,setButtonState] = useState(true);
@@ -42,6 +46,8 @@ export default function Login() {
       });
       console.log(response)
       console.log("success")
+      setLoggedUser(response.data)
+      setIsLoggedIn(true)
    
     }
     catch(error) {
@@ -109,22 +115,22 @@ export default function Login() {
 
     </Tooltip>
         
-        <TextInput style={{margin: '1em 0 1em 0'}} placeholder="Enter your name" value={name} onChange={(e) => nameHandler(e.target.value)}/>
+        <TextInput label="Name:" style={{margin: '1em 0 1em 0'}} placeholder="Enter your name" value={name} onChange={(e) => nameHandler(e.target.value)}/>
         
         
-        <TextInput style={{margin: '1em 0 1em 0'}} placeholder="Enter your email" value={email} onChange={(e) => emailHandler(e.target.value)}/>
+        <TextInput  label="Email:" style={{margin: '1em 0 1em 0'}} placeholder="Enter your Email. A valid email should contain a '@'" value={email} onChange={(e) => emailHandler(e.target.value)}/>
 
        
-        <TextInput style={{margin: '1em 0 1em 0'}} placeholder="Enter your password" type="password" value={password} onChange={(e) => TypedPassword(e.target.value)}/>
+        <TextInput label="Password:" style={{margin: '1em 0 1em 0'}} placeholder="Enter your password" type="password" value={password} onChange={(e) => TypedPassword(e.target.value)}/>
         
         {/* Εδώ κάνουμε χρήση className με σωστό τρόπο */}
-        <Button  onClick={handleLogin} disabled={buttonState}>
+        <Button style={{backgroundColor: "#03fc88", color: "black"}} onClick={handleLogin} disabled={buttonState}>
   Login
  </Button>
  <div>If you dont have an account, <SignUp></SignUp></div>
       </Modal>
 
-<Button className="SignUpButton"variant="default" onClick={open} >
+<Button style={{backgroundColor: "#03fc88", color: "black"}} variant="default" onClick={open} >
         Login
       </Button>
 

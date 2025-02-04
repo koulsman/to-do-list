@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const ListSchema = new Schema({
-  name: String, // String is shorthand for {type: String}
-  list_id: String,
+  u_id: String,
+  list_title: String,
   list_items: Array,
-  isDone: {type: Boolean , default: false}
+  list_isDone: {type: Boolean , default: false}
 }, { 
     collection: 'lists' // Specify the collection name explicitly
   });
 
-const Lists = mongoose.model('lists', ListSchema);
+const List = mongoose.model('lists', ListSchema);
 console.log("database:MyTODOs_db, collection:lists")
-module.exports = Lists;
+module.exports = List;

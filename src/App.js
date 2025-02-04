@@ -17,13 +17,21 @@ import './Buttons.module.css';
 import TODO from './TODO';
 import Info from './Info'
 import "./Css/SignUp.css"
+import { loggedUserAtom,isLoggedInAtom } from './LoggedUser';
+import { useAtom } from 'jotai';
+import User from './User';
 // Jotai atoms
 export const storedList = atom([]);
 export const loggedIn = atom([]);
 export const userName = atom();
 export const Email = atom();
 
+
 function App() {
+  const [loggedUser] = useAtom(loggedUserAtom);
+  const [isLoggedIn,setIsLoggedIn] = useAtom(isLoggedInAtom)
+  console.log(loggedUser)
+  console.log("LOGGED USER" + loggedUser)
   const theme = createTheme({
     /** Αν χρειάζεται, μπορείς να προσθέσεις παραμετροποιήσεις εδώ */
     Button : {
@@ -45,7 +53,8 @@ function App() {
         <h1><TODO/></h1>
         <div>
         {/* <SignUp/> */}
-        <Login/>
+        {/* {LoggedUserAtom !== atom2? <Login/> : <User /> }  */}
+        {/* {isLoggedIn ? <User /> : <Login/>} */}
        
         </div>
         
