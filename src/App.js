@@ -9,17 +9,17 @@ import MainMenu from './MainMenu';
 import { atom } from 'jotai';
 import ViewAndEditList from './ViewAndEditList';
 import '@mantine/core/styles.css';
-import SignUp from './SignUp';
-import Login from './Login';
+import SignUp from './Login-Signup/SignUp';
+import Login from './Login-Signup/Login';
 import { createTheme, MantineProvider } from '@mantine/core';
 import { useState } from 'react';
 import './Buttons.module.css';
 import TODO from './TODO';
 import Info from './Info'
 import "./Css/SignUp.css"
-import { loggedUserAtom,isLoggedInAtom } from './LoggedUser';
+import { loggedUserAtom,isLoggedInAtom } from './Login-Signup/LoggedUser';
 import { useAtom } from 'jotai';
-import User from './User';
+import User from './Login-Signup/User';
 // Jotai atoms
 export const storedList = atom([]);
 export const loggedIn = atom([]);

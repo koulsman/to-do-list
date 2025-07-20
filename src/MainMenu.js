@@ -3,10 +3,10 @@ import './ViewLists';
 import { useNavigate } from "react-router-dom";  
 import Card from './Card';  
 import Info from './Info'
-import { loggedUserAtom,isLoggedInAtom } from './LoggedUser';
+import { loggedUserAtom,isLoggedInAtom } from './Login-Signup/LoggedUser';
 import { useAtom } from 'jotai';
-import Login from './Login';
-import User from './User';
+import Login from './Login-Signup/Login';
+import User from './Login-Signup/User';
 import "./Css/SignUp.css"
 
 

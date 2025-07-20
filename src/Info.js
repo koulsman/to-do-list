@@ -58,14 +58,14 @@ export default function Info() {
       <Tabs.Panel value="1">
       <ul>
             <li>Make lists by clicking on Create List and submit the lists to save them.</li>
-            <li>Lists are saved in the local storage so, in order to save them permantly, Sign Up and Login with your credentials.</li>
+            <li>Lists are saved in the local storage so, in order to both save them permanently and access them from every device, Sign Up and Login with your credentials.</li>
             <li>For testing, it's possible to access pre-defined lists by logging in as a default user. Just flip the switch in the Login and have fun!</li>
           </ul>
       </Tabs.Panel>
       <Tabs.Panel value="2">
       <ul>
          <li>Δημιουργήστε λίστες κάνοντας κλικ στο Create List και πατήστε Submit για να τις αποθηκεύσετε.</li>
-          <li>Για τη μόνιμη αποθήκευση των λιστών, εγγραφείτε και συνδεθείτε με τα διαπιστευτήριά σας.</li>
+          <li>Για τη μόνιμη αποθήκευση των λιστών και ανάκτησή τους από οποιαδήποτε συσκευή, εγγραφείτε και συνδεθείτε με τα διαπιστευτήριά σας.</li>
            <li>Για δοκιμή, μπορείτε να αποκτήσετε πρόσβαση σε προκαθορισμένες λίστες. Απλώς ανοίξτε το διακόπτη στη σελίδα Login!</li>
             </ul>
       </Tabs.Panel>

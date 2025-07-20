@@ -13,7 +13,7 @@ import { useAtomWithStorage } from "jotai/utils";
 import { TextInput, Button } from "@mantine/core";
 import addListItem from "./svg/add-listitem.svg";
 import { atom, useAtom } from "jotai";
-import { loggedUserAtom, isLoggedInAtom } from "./LoggedUser";
+import { loggedUserAtom, isLoggedInAtom } from "./Login-Signup/LoggedUser";
 import axios from "axios";
 
 function CreateList() {
@@ -105,6 +105,7 @@ function CreateList() {
               <TextInput
                 onChange={(event) => setTitle(event.target.value)}
                 placeholder="ADD TITLE"
+                autosize
                 styles={{
                   input: {
                     padding: "0.5em",

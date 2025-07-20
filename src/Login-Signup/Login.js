@@ -1,7 +1,7 @@
 import { useDisclosure } from '@mantine/hooks';
 import { Modal, Button, TextInput, Switch, Tooltip } from '@mantine/core';
-import './Css/SignUp.css'; // Εισάγεις το CSS αρχείο σου
-import './Card.css';
+import '../Css/SignUp.css'; // Εισάγεις το CSS αρχείο σου
+import '../Card.css';
 import { useState, useEffect } from 'react';
 import SignUp from './SignUp';
 import axios from 'axios';
@@ -123,16 +123,25 @@ export default function Login() {
        
         <TextInput label="Password:" style={{margin: '1em 0 1em 0'}} placeholder="Enter your password" type="password" value={password} onChange={(e) => TypedPassword(e.target.value)}/>
         
-        {/* Εδώ κάνουμε χρήση className με σωστό τρόπο */}
+      <div style={{display: "flex", justifyContent: "center"}}>
         <Button style={{backgroundColor: "#03fc88", color: "black"}} onClick={handleLogin} disabled={buttonState}>
   Login
  </Button>
- <div>If you dont have an account, <SignUp></SignUp></div>
+ </div>
+ <div style={{display: "flex"}}>
+  <div>
+    If you dont have an account and want to access your lists from every device, 
+    </div>
+    <div style={{display: "flex", alignItems: "end"}}>
+      <SignUp/>
+      </div></div>
       </Modal>
 
-<Button style={{backgroundColor: "#03fc88", color: "black"}} variant="default" onClick={open} >
+  <Button style={{backgroundColor: "#03fc88", color: "black"}} variant="default" onClick={open} >
         Login
       </Button>
+
+
 
     </>
   );

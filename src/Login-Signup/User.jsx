@@ -2,8 +2,8 @@ import { useDisclosure } from '@mantine/hooks';
 import { Modal, Button } from '@mantine/core';
 import { useAtom } from 'jotai';
 import { loggedUserAtom, isLoggedInAtom } from './LoggedUser';
-import './App.css';
-import "./Css/SignUp.css"
+import '../App.css';
+import "../Css/SignUp.css"
 
 export default function User() {
   const [opened, { open, close }] = useDisclosure(false);

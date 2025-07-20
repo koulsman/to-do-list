@@ -1,7 +1,7 @@
 import { useDisclosure } from '@mantine/hooks';
 import { Modal, Button, TextInput, Switch } from '@mantine/core';
-import './Css/SignUp.css'; // Εισάγεις το CSS αρχείο σου
-import './Card.css';
+import '../Css/SignUp.css'; // Εισάγεις το CSS αρχείο σου
+import '../Card.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { loggedUserAtom, isLoggedInAtom } from './LoggedUser';

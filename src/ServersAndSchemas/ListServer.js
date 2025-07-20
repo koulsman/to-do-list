@@ -50,3 +50,30 @@ app.post('/list', async(req,res) => {
     });
 
     // {list_title, list_items, u_id}
+
+    // app.get('/listsById', async(req,res) => {
+    //   const u_id = req.params.uid;
+    //   const foundLists = List.find({u_id: {u_id}}, function(err, data){
+    //     if(err){
+    //         console.log(err);
+    //         return
+    //     }
+    
+    //     if(data.length == 0) {
+    //         console.log("No record found")
+    //         return
+    //     }
+    //     res.status(201).json(foundLists);
+    
+    //     console.log(data[0].name);
+    // })
+    // })
+
+    app.get('/listsById/:uid', async (req, res) => {
+      const u_id = req.params.uid;
+      const foundLists = await List.find({ u_id: u_id });
+      if (!foundLists.length) {
+          return res.status(404).json({ message: "No lists found" });
+      }
+      res.status(200).json(foundLists);
+   });
