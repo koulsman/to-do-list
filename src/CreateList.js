@@ -7,6 +7,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 // import { create } from 'zustand';
 // import { useStore } from './zustand';
+import Navbar from "./Navbar";
 
 import { storedList } from "./App";
 import { useAtomWithStorage } from "jotai/utils";
@@ -74,7 +75,9 @@ function CreateList() {
   const formSubmitHandler = useCallback(
     (event) => {
       event.preventDefault();
+      if(isLoggedIn === false) {
 
+      
       setFinalList((finalList) => {
         finalList.push({ Mytitle: title, Mylist: [list], isDone: false });
         console.log("console logs inside set final list");
@@ -82,7 +85,8 @@ function CreateList() {
 
         return finalList;
       });
-      if (isLoggedIn === true) {
+      }
+      else if (isLoggedIn === true) {
         postList()
       } else {
         navigate("/ViewLists");
@@ -95,7 +99,10 @@ function CreateList() {
 
   return (
     <div className="CreateList">
+      <header>
+          <Navbar/>
       <h1 className="Page">CREATE LIST</h1>
+      </header>
       <div
         style={{ display: "flex", margin: "auto", justifyContent: "center" }}
       >

@@ -11,7 +11,7 @@ import { SegmentedControl, Grid, Autocomplete, Button } from "@mantine/core";
 import { atom, useAtom } from "jotai";
 import { loggedUserAtom, isLoggedInAtom } from "./Login-Signup/LoggedUser";
 import axios from "axios";
-import Footer from "./Navbar";
+import Navbar from "./Navbar";
 
 function ViewLists() {
   const navigate = useNavigate();
@@ -84,8 +84,10 @@ function ViewLists() {
   return (
     <div>
       <header className="View-header">
+        <Navbar/>
         <h1 className="Page"> View all your lists </h1>
       </header>
+      
       <div
         style={{
           display: "flex",
@@ -116,7 +118,7 @@ function ViewLists() {
                 color="#03fc88"
                 value={segmentedControlValue}
                 onChange={setSegmentedControlValue}
-                data={["All Lists", "Undone", "isDone"]}
+                 data= {["All Lists", "Undone", "isDone",isLoggedIn === true ? "Unposted Lists" : null]} 
               />
             </div>
           ) : (
@@ -230,9 +232,9 @@ function ViewLists() {
           <div>Go to Main Menu</div>
         </Link>
       </footer> */}
-      <footer>
-            <Footer/>
-      </footer>
+      
+            
+      
       
       <Routes>
         <Route path=":index" element={<ViewAndEditList />} />

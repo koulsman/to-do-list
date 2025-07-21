@@ -2,46 +2,33 @@ import './Card.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-
 export default function CreatedLists(props) {
+  const [isHovering, setIsHovering] = useState(false);
 
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  };
 
-    const [isHovering, setIsHovering] = useState(false);
+  const handleMouseOut = () => {
+    setIsHovering(false);
+  };
 
-    const handleMouseOver = () => {
-        setIsHovering(true);
-    };
+  const listItems = Array.isArray(props.cardHovered) ? props.cardHovered : [];
 
-    const handleMouseOut = () => {
-        setIsHovering(false);
-    };
-    let listItems = props.cardHovered;
-    return (
-        // <div className = {props.cardCondition} >
-        
-        <section onMouseOver={handleMouseOver}
-            onMouseOut={handleMouseOut}>
-            {isHovering ?
-                <div className='CreatedList'>
-                   
-                        
-                    
-                    {props.cardButton}
-                    <Link to={`/ViewAndEditList/${props.cardIndex}`}><div>{props.name}</div></Link>
-                    <ul>{listItems.map((listItemsArray) => <ul className="ListItems">{listItemsArray.map((listItem) => <li>{listItem}</li>)}</ul> )}</ul>
-                    
-                    
-                </div>
+  return (
+    <section onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+      <div className='CreatedList'>
+        {props.cardButton}
+        <Link to={`/ViewAndEditList/${props.cardIndex}`}>{props.name}</Link>
 
-                :
-                <div className='CreatedList'>
-                    {props.cardButton}
-                    <Link to={`/ViewAndEditList/${props.cardIndex}`}>{props.name}</Link>
-                    {/* {props.children} */}
-                </div>}
-
-        </section>
-
-    );
-
+        {isHovering && (
+          <ul className="ListItems">
+            {listItems.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </section>
+  );
 }

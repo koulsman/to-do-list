@@ -20,7 +20,7 @@ export default function Navbar() {
         background: "transparent",
         justifyContent: "center",
         alignItems: "center",
-        height: "6em",
+        height: "3em",
       }}
     >
       {url.pathname === "/ViewLists" ?  (
@@ -30,28 +30,28 @@ export default function Navbar() {
           onMouseOut={() => setListactionIsHovered(false)}
           onClick={() => navigate("/CreateList")}
           style={{
-            width: listactionIsHovered ? "2.2em" : "2em",
-            height:listactionIsHovered ? "2.2em" : "2em",
+            width: "2em",
+            height:"2em",
             background: listactionIsHovered ? "#03fc88" : "rgb(11,80,81)",
             marginRight: "0.5em",
             padding: "0.5em",
             borderRadius: "0.5em",
-            border: "0.1em solid black"
+            border: listactionIsHovered ? "0.1em solid black" : "0.1em solid #03fc88"
           }}
         />
       ) :  <img
           src={View}
           onMouseOver={() => setListactionIsHovered(true)}
-          onMouseOut={() => setListactionIsHovered(true)}
+          onMouseOut={() => setListactionIsHovered(false)}
           onClick={() => navigate("/ViewLists")}
           style={{
-            width: listactionIsHovered ? "2.2em" : "2em",
-            height: listactionIsHovered ? "2.2em" : "2em",
+            width:  "2em",
+            height:  "2em",
             background: listactionIsHovered ? "#03fc88" : "rgb(11,80,81)",
             marginRight: "0.5em",
             padding: "0.5em",
             borderRadius: "0.5em",
-            border: "0.1em solid black"
+            border: listactionIsHovered ? "0.1em solid black" : "0.1em solid #03fc88"
           }}
         />
       }
@@ -62,13 +62,13 @@ export default function Navbar() {
         onMouseOut={() => setHomeIsHovered(false)}
         onClick={() => navigate("/MainMenu")}
         style={{
-          width: homeIsHovered ? "2.2em" : "2em",
-          height: homeIsHovered ? "2.2em" : "2em",
+          width: "2em",
+          height: "2em",
           background: homeIsHovered ? "#03fc88" : "rgb(11,80,81)",
           marginLeft: "0.5em",
           padding: "0.5em",
           borderRadius: "0.5em",
-          border: "0.1em solid black"
+          border: homeIsHovered ? "0.1em solid black" : "0.1em solid #03fc88"
         }}
       />
     </div>

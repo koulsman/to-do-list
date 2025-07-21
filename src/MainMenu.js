@@ -27,6 +27,10 @@ console.log(isLoggedIn + "ISLOGGEDIN")
     navigate('/ViewLists');
   }
 
+  function cardHoveredHandler() {
+    
+  }
+
 
 
   return (
@@ -36,11 +40,11 @@ console.log(isLoggedIn + "ISLOGGEDIN")
       <br />
     <div className='Menu' id="menu" style={{display: "flex",justifyContent: "center"}}>
       <div onClick={handleCreateList}>
-        <Card name="CREATE" secondName= "a new list"   />
+        <Card onMouseOver={() => cardHoveredHandler() } name="CREATE" secondName= "a new list"   />
       </div>
 
       <div onClick={handleViewLists}> 
-        <Card name="VIEW" secondName= "your lists"/>
+        <Card onMouseOver={() => cardHoveredHandler() } name="VIEW" secondName= "your lists"/>
       </div>
 
     </div>

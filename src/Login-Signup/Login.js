@@ -69,7 +69,7 @@ export default function Login() {
     if (checked) {
       setName('john doe');
       setEmail('johndoe@gmail.com');
-      setPassword('johnnyBeGood');
+      setPassword('johnnybegood');
     } else {
       setName('');
       setEmail('');

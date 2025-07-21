@@ -33,9 +33,9 @@ function App() {
   console.log(loggedUser)
   console.log("LOGGED USER" + loggedUser)
   const theme = createTheme({
-    /** Αν χρειάζεται, μπορείς να προσθέσεις παραμετροποιήσεις εδώ */
+    
     Button : {
-      color: "#00cccc", /* Αφαιρέθηκαν τα quotes */
+      color: "#00cccc", 
       backgroundColor: 'black'
       }
   });
