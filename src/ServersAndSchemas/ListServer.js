@@ -69,6 +69,29 @@ app.post('/list', async(req,res) => {
     // })
     // })
 
+  app.post('/list/isDone/:lid', async (req, res) => {
+  const { lid } = req.params;
+
+  try {
+    // First, find the list by ID
+    const list = await List.findById(lid);
+    if (!list) {
+      return res.status(404).json({ message: "List not found" });
+    }
+
+    // Toggle the isDone field
+    list.list_isDone = !list.list_isDone;
+
+    // Save the updated list
+    const updatedList = await list.save();
+
+    res.status(200).json(updatedList);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
     app.get('/listsById/:uid', async (req, res) => {
       const u_id = req.params.uid;
       const foundLists = await List.find({ u_id: u_id });

@@ -20,11 +20,16 @@ export default function MainMenu() {
   // navigation for CreateList and ViewLists
 console.log(isLoggedIn + "ISLOGGEDIN")
   function handleCreateList() {
+     if(loggedUser) {
     navigate('/CreateList');
+    }
   }
 
   function handleViewLists() {
-    navigate('/ViewLists');
+    if(loggedUser) {
+        navigate('/ViewLists');
+    }
+    
   }
 
   function cardHoveredHandler() {

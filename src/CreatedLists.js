@@ -16,10 +16,10 @@ export default function CreatedLists(props) {
   const listItems = Array.isArray(props.cardHovered) ? props.cardHovered : [];
 
   return (
-    <section onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-      <div className='CreatedList'>
+    
+      <div className='CreatedList' onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
         {props.cardButton}
-        <Link to={`/ViewAndEditList/${props.cardIndex}`}>{props.name}</Link>
+        <Link to={`/ViewAndEditList/${props.listUrl}`}>{props.name}</Link>
 
         {isHovering && (
           <ul className="ListItems">
@@ -29,6 +29,6 @@ export default function CreatedLists(props) {
           </ul>
         )}
       </div>
-    </section>
+   
   );
 }

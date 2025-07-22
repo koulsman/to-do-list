@@ -7,7 +7,7 @@ import MainMenu from "./MainMenu";
 import { useState, useEffect } from "react";
 import ViewAndEditList from "./ViewAndEditList";
 import CreatedLists from "./CreatedLists";
-import { SegmentedControl, Grid, Autocomplete, Button } from "@mantine/core";
+import { SegmentedControl, Grid, Autocomplete, Button, isElement } from "@mantine/core";
 import { atom, useAtom } from "jotai";
 import { loggedUserAtom, isLoggedInAtom } from "./Login-Signup/LoggedUser";
 import axios from "axios";
@@ -24,13 +24,14 @@ function ViewLists() {
   const [loggedUser] = useAtom(loggedUserAtom);
   const [newList, setNewList] = useState([]);
   const [isLoggedIn,setIsLoggedIn] = useState(isLoggedInAtom)
-
+  const [allLists, setAllLists] = useState([]);
   useEffect(() => {
     async function getLists() {
       try {
         const res = await axios.get(
           `http://localhost:3002/listsById/${loggedUser?._id}`
         );
+         setAllLists(res.data);    
         setNewList(res.data);
       } catch (err) {
         console.log(err);
@@ -39,28 +40,19 @@ function ViewLists() {
     getLists();
   }, []);
 
-  useEffect(() => {
-    if (segmentedControlValue === "All Lists") {
-      setSelectedList(
-        finalList.map((element, index) => ({
-          ...element,
-          originalIndex: index,
-        }))
-      );
-    } else if (segmentedControlValue === "Undone") {
-      setSelectedList(
-        finalList
-          .map((element, index) => ({ ...element, originalIndex: index }))
-          .filter((element) => !element.isDone)
-      );
-    } else if (segmentedControlValue === "isDone") {
-      setSelectedList(
-        finalList
-          .map((element, index) => ({ ...element, originalIndex: index }))
-          .filter((element) => element.isDone)
-      );
-    }
-  }, [segmentedControlValue, finalList]);
+ useEffect(() => {
+  let filtered;
+
+  if (segmentedControlValue === "All Lists") {
+    filtered = allLists;
+  } else if (segmentedControlValue === "Undone") {
+    filtered = allLists.filter((element) => !element.list_isDone);
+  } else if (segmentedControlValue === "is Done") {
+    filtered = allLists.filter((element) => element.list_isDone);
+  }
+
+  setNewList(filtered);
+}, [segmentedControlValue, allLists]);
 
   function searchHandler(typedValue) {
     setAutocompleteValue(typedValue);
@@ -73,13 +65,35 @@ function ViewLists() {
     setSearchResults(mySearch);
   }
 
-  function listDoneHandler(index) {
-    setFinalList((prevFinalList) => {
-      let updatedFinalList = [...prevFinalList];
-      updatedFinalList[index]["isDone"] = !updatedFinalList[index]["isDone"];
-      return updatedFinalList;
-    });
+  async function isDoneHandler() {
+
   }
+
+  async function listDoneHandler(index, lid, isDone) {
+  try {
+    const response = await axios.post(`http://localhost:3002/list/isDone/${lid}`);
+    const updatedList = response.data;
+
+    setNewList((prev) => {
+      const newListCopy = [...prev];
+      newListCopy[index].list_isDone = updatedList.list_isDone;
+      return newListCopy;
+    });
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+    // setList((prevFinalList) => {
+    //   let updatedFinalList = [...prevFinalList];
+    //   updatedFinalList[index]["isDone"] = !updatedFinalList[index]["isDone"];
+    //   return updatedFinalList;
+    // });
+  
+
+  useEffect(() => {
+
+  },[newList])
 
   return (
     <div>
@@ -118,7 +132,7 @@ function ViewLists() {
                 color="#03fc88"
                 value={segmentedControlValue}
                 onChange={setSegmentedControlValue}
-                 data= {["All Lists", "Undone", "isDone",isLoggedIn === true ? "Unposted Lists" : null]} 
+                 data= {["All Lists", "Undone", "is Done"]} 
               />
             </div>
           ) : (
@@ -134,22 +148,19 @@ function ViewLists() {
           )}
         </div>
       </div>
-
-      {autocompleteValue === ""
-        ? selectedList.map((element) => (
-            <CreatedLists
-              key={element.originalIndex}
-              cardHovered={element["Mylist"]}
-              cardButton={
-                element["isDone"] ? (
+      {/* {autocompleteValue === "" &&  } */}
+      {autocompleteValue === "" && newList.map((element, index) => {
+        return <CreatedLists  cardHovered = {element.list_items} 
+                cardButton={
+                element.list_isDone ? (
                   <button
                     className="buttonDone"
-                    onClick={() => listDoneHandler(element.originalIndex)}
+                    onClick={() => listDoneHandler(index,element._id)}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
+                      width="1em"
+                      height="1em"
                       fill="currentColor"
                       className="bi bi-check"
                       viewBox="0 0 16 16"
@@ -160,81 +171,14 @@ function ViewLists() {
                 ) : (
                   <button
                     className="buttonDone"
-                    onClick={() => listDoneHandler(element.originalIndex)}
+                    onClick={() => listDoneHandler(index,element._id,element.list_isDone)}
                   ></button>
                 )
               }
-              name={element["Mytitle"]}
-              cardIndex={element.originalIndex}
-            />
-          ))
-        : searchResults.map((element, index) => (
-            <CreatedLists
-              key={index}
-              cardHovered={element["Mylist"]}
-              cardButton={
-                element["isDone"] ? (
-                  <button
-                    className="buttonDone"
-                    onClick={() => listDoneHandler(index)}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      className="bi bi-check"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
-                    </svg>
-                  </button>
-                ) : (
-                  <button
-                    className="buttonDone"
-                    onClick={() => listDoneHandler(index)}
-                  ></button>
-                )
-              }
-              name={element["Mytitle"]}
-              cardIndex={index}
-            />
-          ))}
-      
-          {isLoggedIn ?
-          <div> savedlists: {
-            (Array.isArray(newList) ? newList : []).map((element, index) => (
-              <div key={index}>
-                <CreatedLists 
-                  cardHovered={newList[index]["list_title"]} 
-                  cardButton={newList[index]["list_isDone"] ? 
-                    <button className="buttonDone" onClick={() => listDoneHandler(index)}>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check" viewBox="0 0 16 16">
-                        <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
-                      </svg>
-                    </button>
-                  : 
-                    <button className="buttonDone" onClick={() => listDoneHandler(index)}></button>
-                  }
-                  name={element["list_title"]} 
-                  cardIndex={index} 
-                />
-              </div>
-            ))}</div> : <div>login to save your lists</div>}
-          
-          
-
-      {/* <footer>
-        <Link to="/CreateList">
-          <div>Create a New List</div>
-        </Link>
-        <Link to="/MainMenu">
-          <div>Go to Main Menu</div>
-        </Link>
-      </footer> */}
-      
-            
-      
+              name={element.list_title}
+              listUrl={element._id}
+              />
+          })}
       
       <Routes>
         <Route path=":index" element={<ViewAndEditList />} />
@@ -247,23 +191,3 @@ function ViewLists() {
 
 export default ViewLists;
 
-{
-  /* {(Array.isArray(newList) ? newList : []).map((element, index) => (
-    <div key={index}>
-      <CreatedLists 
-        cardHovered={newList[index]["list_title"]} 
-        cardButton={newList[index]["list_isDone"] ? 
-          <button className="buttonDone" onClick={() => listDoneHandler(index)}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check" viewBox="0 0 16 16">
-              <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
-            </svg>
-          </button>
-        : 
-          <button className="buttonDone" onClick={() => listDoneHandler(index)}></button>
-        }
-        name={element["list_title"]} 
-        cardIndex={index} 
-      />
-    </div>
-  ))} */
-}
