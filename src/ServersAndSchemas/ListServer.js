@@ -100,3 +100,12 @@ app.post('/list', async(req,res) => {
       }
       res.status(200).json(foundLists);
    });
+
+   app.get('/list/:lid', async (req,res) => {
+    const lid = req.params.lid;
+      const selectedList = await List.find({ _id: lid });
+      if (!selectedList) {
+          return res.status(404).json({ message: "No such list" });
+      }
+      res.status(200).json(selectedList);
+   })

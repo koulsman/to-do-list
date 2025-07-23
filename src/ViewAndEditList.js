@@ -14,17 +14,49 @@ import { isVisible } from "@testing-library/user-event/dist/utils";
 import DeleteListModal from "./DeleteListModal";
 import { Button } from "@mantine/core";
 import addListItem from "./svg/add-listitem.svg";
+import axios from "axios";
+import Navbar from "./Navbar";
 
 function ViewAndEditList() {
   const navigate = useNavigate();
-  const {url} = useLocation()
+  const location = useLocation()
+  const [selectedList,setSelectedList] = useState([])
   
   useEffect(() => {
-    console.log(url)
-  },[url])
+    console.log(location.pathname)
+  },[location])
+const { index } = useParams();
 
+useEffect(() => {
+  console.log("ID from URL:", index);
+}, [index]); 
+  async function getList() {
+    try {
+        const response = await axios.get(`http://localhost:3002/list/${index}`);
+        console.log(response.data)
+        setSelectedList(response.data[0])
+        console.log(response.data[0])
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getList()
+  }
+  ,[index])
+
+  // useEffect(() => {
+
+  // },[selectedList])
+
+  function addListItemHandler() {
+
+  }
   return (
     <div>
+      <Navbar />
       <h1 className="Page">VIEW AND EDIT LIST</h1>
       <section>
       <div style={{ display: "flex", flexDirection: "column", margin: "auto", justifyContent: "center" }}>
@@ -32,7 +64,7 @@ function ViewAndEditList() {
         <DeleteListModal   />
         </div>
         <div style={{margin: "auto"}} >
-        <Card >
+        <Card name={selectedList.list_title}>
           <div className="list">
             {/* <button onClick={() => setVisible(isVisible => !isVisible)}>Edit the list</button> */}
             <img
@@ -43,9 +75,9 @@ function ViewAndEditList() {
                 background: "#03fc88",
                 borderRadius: "50%",
               }}
-              // src={addListItem}
-              // alt="Add List Item"
-              // onClick={addListItemHandler}
+              src={addListItem}
+              alt="Add List Item"
+              onClick={addListItemHandler}
             />
           
 
@@ -59,6 +91,11 @@ function ViewAndEditList() {
                 setList={setList}
               ></ListItem>
             ))} */}
+
+           {Array.isArray(selectedList.list_items) &&
+  selectedList.list_items.map((element, index) => (
+    <ListItem key={index} index={index} value={element}/>
+))}
 
             
 

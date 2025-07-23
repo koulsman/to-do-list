@@ -7,7 +7,13 @@ import MainMenu from "./MainMenu";
 import { useState, useEffect } from "react";
 import ViewAndEditList from "./ViewAndEditList";
 import CreatedLists from "./CreatedLists";
-import { SegmentedControl, Grid, Autocomplete, Button, isElement } from "@mantine/core";
+import {
+  SegmentedControl,
+  Grid,
+  Autocomplete,
+  Button,
+  isElement,
+} from "@mantine/core";
 import { atom, useAtom } from "jotai";
 import { loggedUserAtom, isLoggedInAtom } from "./Login-Signup/LoggedUser";
 import axios from "axios";
@@ -23,7 +29,7 @@ function ViewLists() {
   const [selectedList, setSelectedList] = useState([]);
   const [loggedUser] = useAtom(loggedUserAtom);
   const [newList, setNewList] = useState([]);
-  const [isLoggedIn,setIsLoggedIn] = useState(isLoggedInAtom)
+  const [isLoggedIn, setIsLoggedIn] = useState(isLoggedInAtom);
   const [allLists, setAllLists] = useState([]);
   useEffect(() => {
     async function getLists() {
@@ -31,7 +37,7 @@ function ViewLists() {
         const res = await axios.get(
           `http://localhost:3002/listsById/${loggedUser?._id}`
         );
-         setAllLists(res.data);    
+        setAllLists(res.data);
         setNewList(res.data);
       } catch (err) {
         console.log(err);
@@ -40,68 +46,71 @@ function ViewLists() {
     getLists();
   }, []);
 
- useEffect(() => {
-  let filtered;
+  useEffect(() => {
+    let filtered;
 
-  if (segmentedControlValue === "All Lists") {
-    filtered = allLists;
-  } else if (segmentedControlValue === "Undone") {
-    filtered = allLists.filter((element) => !element.list_isDone);
-  } else if (segmentedControlValue === "is Done") {
-    filtered = allLists.filter((element) => element.list_isDone);
-  }
+    if (segmentedControlValue === "All Lists") {
+      filtered = allLists;
+    } else if (segmentedControlValue === "Undone") {
+      filtered = allLists.filter((element) => !element.list_isDone);
+    } else if (segmentedControlValue === "is Done") {
+      filtered = allLists.filter((element) => element.list_isDone);
+    }
 
-  setNewList(filtered);
-}, [segmentedControlValue, allLists]);
+    setNewList(filtered);
+  }, [segmentedControlValue, allLists]);
 
   function searchHandler(typedValue) {
+    console.log(typedValue)
     setAutocompleteValue(typedValue);
-    const mySearch = finalList.filter((element) =>
-      element["Mytitle"]
+    console.log(newList);
+    const mySearch = newList.filter((element) =>
+      element.list_title
         .trim()
         .toLowerCase()
         .startsWith(typedValue.toLowerCase())
     );
+    console.log(mySearch);
     setSearchResults(mySearch);
   }
 
-  async function isDoneHandler() {
-
-  }
-
-  async function listDoneHandler(index, lid, isDone) {
-  try {
-    const response = await axios.post(`http://localhost:3002/list/isDone/${lid}`);
-    const updatedList = response.data;
-
-    setNewList((prev) => {
-      const newListCopy = [...prev];
-      newListCopy[index].list_isDone = updatedList.list_isDone;
-      return newListCopy;
-    });
-
-  } catch (error) {
-    console.log(error);
-  }
-}
-    // setList((prevFinalList) => {
-    //   let updatedFinalList = [...prevFinalList];
-    //   updatedFinalList[index]["isDone"] = !updatedFinalList[index]["isDone"];
-    //   return updatedFinalList;
-    // });
-  
-
   useEffect(() => {
 
-  },[newList])
+  },[searchResults])
+
+  async function isDoneHandler() {}
+
+  async function listDoneHandler(index, lid, isDone) {
+    try {
+      const response = await axios.post(
+        `http://localhost:3002/list/isDone/${lid}`
+      );
+      const updatedList = response.data;
+
+      setNewList((prev) => {
+        const newListCopy = [...prev];
+        newListCopy[index].list_isDone = updatedList.list_isDone;
+        return newListCopy;
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  // setList((prevFinalList) => {
+  //   let updatedFinalList = [...prevFinalList];
+  //   updatedFinalList[index]["isDone"] = !updatedFinalList[index]["isDone"];
+  //   return updatedFinalList;
+  // });
+
+  useEffect(() => {}, [newList]);
 
   return (
     <div>
       <header className="View-header">
-        <Navbar/>
-        <h1 className="Page"> View all your lists </h1>
+        <Navbar />
+        <h1 className="Page">  VIEW ALL YOUR LISTS </h1>
       </header>
-      
+
       <div
         style={{
           display: "flex",
@@ -132,7 +141,7 @@ function ViewLists() {
                 color="#03fc88"
                 value={segmentedControlValue}
                 onChange={setSegmentedControlValue}
-                 data= {["All Lists", "Undone", "is Done"]} 
+                data={["All Lists", "Undone", "is Done"]}
               />
             </div>
           ) : (
@@ -149,13 +158,16 @@ function ViewLists() {
         </div>
       </div>
       {/* {autocompleteValue === "" &&  } */}
-      {autocompleteValue === "" && newList.map((element, index) => {
-        return <CreatedLists  cardHovered = {element.list_items} 
-                cardButton={
+      {autocompleteValue == "" ?
+        newList.map((element, index) => {
+          return (
+            <CreatedLists
+              cardHovered={element.list_items}
+              cardButton={
                 element.list_isDone ? (
                   <button
                     className="buttonDone"
-                    onClick={() => listDoneHandler(index,element._id)}
+                    onClick={() => listDoneHandler(index, element._id)}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -171,15 +183,54 @@ function ViewLists() {
                 ) : (
                   <button
                     className="buttonDone"
-                    onClick={() => listDoneHandler(index,element._id,element.list_isDone)}
+                    onClick={() =>
+                      listDoneHandler(index, element._id, element.list_isDone)
+                    }
                   ></button>
                 )
               }
               name={element.list_title}
               listUrl={element._id}
-              />
-          })}
-      
+            />
+          );
+        })
+        :
+        searchResults.map((element, index) => {
+          return (
+            <CreatedLists
+              cardHovered={element.list_items}
+              cardButton={
+                element.list_isDone ? (
+                  <button
+                    className="buttonDone"
+                    onClick={() => listDoneHandler(index, element._id)}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1em"
+                      height="1em"
+                      fill="currentColor"
+                      className="bi bi-check"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
+                    </svg>
+                  </button>
+                ) : (
+                  <button
+                    className="buttonDone"
+                    onClick={() =>
+                      listDoneHandler(index, element._id, element.list_isDone)
+                    }
+                  ></button>
+                )
+              }
+              name={element.list_title}
+              listUrl={element._id}
+            />
+          );
+        })}
+
       <Routes>
         <Route path=":index" element={<ViewAndEditList />} />
         <Route exact path="/CreateList" element={<CreateList />} />
@@ -190,4 +241,3 @@ function ViewLists() {
 }
 
 export default ViewLists;
-
