@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { MantineProvider, createTheme } from '@mantine/core';
 import { BrowserRouter, Router, Routes, Route } from 'react-router-dom';
+import { Provider } from 'jotai'; 
 
 const theme = createTheme({
   /** Put your mantine theme override here */
@@ -19,7 +20,9 @@ root.render(
   <MantineProvider defaultColorScheme="dark">
     <React.StrictMode>
       <BrowserRouter> {/* Τοποθετούμε το App μέσα στο BrowserRouter */}
+      <Provider >
         <App />
+        </Provider>
       </BrowserRouter>
     </React.StrictMode>
   </MantineProvider>
