@@ -16,6 +16,9 @@ export default function User() {
     setIsLoggedIn(false);
     setLoggedUser('');
   }
+    if (!isLoggedIn) {
+    return <div>Hello No user logged in</div>;
+  }
 
   return (
     <>
