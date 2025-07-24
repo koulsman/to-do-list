@@ -33,7 +33,7 @@ function ViewAndEditList() {
   }, [index]);
   async function getList() {
     try {
-      const response = await axios.get(`${config_LISTS_API}/list/${index}`);
+      const response = await axios.get(`${config.LISTS_API}/list/${index}`);
       console.log(response.data);
       setSelectedList(response.data[0]);
       console.log(response.data[0]);
