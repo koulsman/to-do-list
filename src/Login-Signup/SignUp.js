@@ -31,23 +31,35 @@ export default function SignUp() {
       setEmail(typedEmail)
   }
   
-  function handleSignUp() {
-    // Λογική για το signup
-    console.log(email +" :email," + name + " :name," + typedPassword + " :password")
-    
-    axios.post(`${config.USERS_API}/users`, {name, email, password : typedPassword })
-    .then(res => {
-      console.log(res);
-      console.log(res.data);
-      
-      setLoggedUser(res.data)
-      console.log(loggedUser)
-      setIsLoggedIn(true)
-    })
-    .catch((error) => {
-      alert(error)
-    })
-  }
+ function handleSignUp() {
+  console.log(email + " :email," + name + " :name," + typedPassword + " :password");
+
+  axios.post(`${config.USERS_API}/users`, {
+    name,
+    email,
+    password: typedPassword
+  })
+  .then(res => {
+    console.log(res);
+    console.log(res.data);
+
+    // ✅ Update global state
+    setLoggedUser(res.data);
+    setIsLoggedIn(true);
+
+    // ✅ Close modal
+    close();
+
+    // ✅ Reset form fields
+    setName('');
+    setEmail('');
+    setTypedPassword('');
+    setRetypedPassword('');
+  })
+  .catch(error => {
+    alert(error);
+  });
+}
   
   function TypedPassword(password)  {
    setTypedPassword(password);
@@ -59,15 +71,16 @@ export default function SignUp() {
    
    }
 
-  useEffect(() => {
-    if(name.length && 
+useEffect(() => {
+  if (name.length && 
       email.length && 
-      typedPassword.length> 0 
-      && typedPassword == retypedPassword) {
-      setButtonState(false)
-     
-    }
-  },[buttonState,typedPassword,retypedPassword])
+      typedPassword.length > 0 &&
+      typedPassword === retypedPassword) {
+    setButtonState(false)
+  } else {
+    setButtonState(true)
+  }
+}, [name, email, typedPassword, retypedPassword])
  
   
   function ReTypedPassword(e) {
