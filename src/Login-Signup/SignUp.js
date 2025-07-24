@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { loggedUserAtom, isLoggedInAtom } from './LoggedUser';
 import { useAtom } from 'jotai';
+import config from "../config";
 
 export default function SignUp() {
   const [opened, { open, close }] = useDisclosure(false);
@@ -34,7 +35,7 @@ export default function SignUp() {
     // Λογική για το signup
     console.log(email +" :email," + name + " :name," + typedPassword + " :password")
     
-    axios.post("http://localhost:3001/users", {name, email, password : typedPassword })
+    axios.post(`${config.USERS_API}/users`, {name, email, password : typedPassword })
     .then(res => {
       console.log(res);
       console.log(res.data);

@@ -18,6 +18,7 @@ import { atom, useAtom } from "jotai";
 import { loggedUserAtom, isLoggedInAtom } from "./Login-Signup/LoggedUser";
 import axios from "axios";
 import Navbar from "./Navbar";
+import config from "./config";
 
 function ViewLists() {
   const navigate = useNavigate();

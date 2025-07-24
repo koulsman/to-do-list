@@ -20,6 +20,7 @@ import "./Css/SignUp.css"
 import { loggedUserAtom,isLoggedInAtom } from './Login-Signup/LoggedUser';
 import { useAtom } from 'jotai';
 import User from './Login-Signup/User';
+import config from "./config";
 // Jotai atoms
 export const storedList = atom([]);
 export const loggedIn = atom([]);

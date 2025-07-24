@@ -16,6 +16,7 @@ import addListItem from "./svg/add-listitem.svg";
 import { atom, useAtom } from "jotai";
 import { loggedUserAtom, isLoggedInAtom } from "./Login-Signup/LoggedUser";
 import axios from "axios";
+import config from "./config";
 
 function CreateList() {
   const [list, setList] = useState([]);
@@ -34,7 +35,7 @@ function CreateList() {
 
   async function postList() {
     console.log(title + "titles")
-      axios.post("http://localhost:3002/list", {
+      axios.post(`${config.LISTS_API}/list`, {
         title,
         uid: loggedUser?._id,
         listItems: list,

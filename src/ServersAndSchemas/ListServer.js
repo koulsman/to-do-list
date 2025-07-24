@@ -92,6 +92,25 @@ app.post('/list', async(req,res) => {
   }
 });
 
+app.post('/updateList/:lid', async(req,res) => {
+  const listId = req.params.lid
+  const title = req.body.title;
+  const listItems = req.body.list_items;
+  
+  const editedList = await List.findByIdAndUpdate(
+    listId,
+    {
+    list_title: title,
+    list_items: listItems
+  });
+  if(!editedList) {
+    return res.status(404).json({message: "no such list"});
+
+  }
+  return res.status(200).json(editedList)
+
+})
+
     app.get('/listsById/:uid', async (req, res) => {
       const u_id = req.params.uid;
       const foundLists = await List.find({ u_id: u_id });
@@ -109,3 +128,15 @@ app.post('/list', async(req,res) => {
       }
       res.status(200).json(selectedList);
    })
+   app.delete('/list/:lid', async (req, res) => {
+  const lid = req.params.lid;
+  try {
+    const deletedList = await List.findByIdAndDelete(lid);
+    if (!deletedList) {
+      return res.status(404).json({ message: "No such list" });
+    }
+    res.status(200).json({ message: "List deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ message: "Error deleting list", error: err });
+  }
+});

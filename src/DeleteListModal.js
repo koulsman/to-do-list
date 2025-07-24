@@ -3,16 +3,29 @@ import { useDisclosure } from '@mantine/hooks';
 import { Modal, Button } from '@mantine/core';
 import { useNavigate } from "react-router-dom";
 import deleteListImg from "./svg/delete-list.svg"
-
-export default function DeleteListModal({finalList,index}) {
+import axios from 'axios';
+export default function DeleteListModal({selectedList}) {
 
 
   const navigate = useNavigate();
   const [opened, { open, close }] = useDisclosure(false);
-  const deleteList = () => {
+  async function deleteList() {
     console.log("you want to delete this fucking list");
-    finalList.splice(index, 1);
-    navigate("/ViewLists");
+    // finalList.splice(index, 1);
+    // navigate("/ViewLists");
+    console.log(selectedList)
+
+    try {
+        const response = await axios.delete(`http://localhost:3002/list/${selectedList._id}`)
+        console.log(response.data)
+        if (response.status === 200 ) {
+          navigate("/ViewLists")
+        }
+    }
+    catch (error) {
+      console.log(error, " : in deleting this list")
+    }
+    
 }
   return (
     <>

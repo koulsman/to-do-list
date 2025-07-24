@@ -7,6 +7,7 @@ import SignUp from './SignUp';
 import axios from 'axios';
 import { useAtom } from 'jotai';
 import {loggedUserAtom, isLoggedInAtom} from './LoggedUser'
+import config from "../config";
 
 export default function Login() {
   const [loggedUser,setLoggedUser] = useAtom(loggedUserAtom)
@@ -40,7 +41,7 @@ export default function Login() {
     // Λογική για το signup
     console.log(email + password)
     try {
-      const response = await axios.post("http://localhost:3001/users/login", {
+      const response = await axios.post(`${config.USERS_API}/users/login`, {
         email,
         password,
       });
