@@ -4,6 +4,7 @@ import { Modal, Button } from '@mantine/core';
 import { useNavigate } from "react-router-dom";
 import deleteListImg from "./svg/delete-list.svg"
 import axios from 'axios';
+import config from "./config";
 export default function DeleteListModal({selectedList}) {
 
 
@@ -16,7 +17,7 @@ export default function DeleteListModal({selectedList}) {
     console.log(selectedList)
 
     try {
-        const response = await axios.delete(`http://localhost:3002/list/${selectedList._id}`)
+        const response = await axios.delete(`${config.LISTS_API}/list/${selectedList._id}`)
         console.log(response.data)
         if (response.status === 200 ) {
           navigate("/ViewLists")

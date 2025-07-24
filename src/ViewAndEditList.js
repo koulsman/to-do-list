@@ -33,7 +33,7 @@ function ViewAndEditList() {
   }, [index]);
   async function getList() {
     try {
-      const response = await axios.get(`http://localhost:3002/list/${index}`);
+      const response = await axios.get(`${config_LISTS_API}/list/${index}`);
       console.log(response.data);
       setSelectedList(response.data[0]);
       console.log(response.data[0]);
@@ -67,7 +67,7 @@ function ViewAndEditList() {
 
     try {
       const response = await axios.post(
-        `http://localhost:3002/updateList/${selectedList._id}`,
+        `${config.LISTS_API}/updateList/${selectedList._id}`,
         {
           lid: selectedList._id,
           title: selectedList.list_title,

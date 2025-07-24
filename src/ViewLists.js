@@ -36,7 +36,7 @@ function ViewLists() {
     async function getLists() {
       try {
         const res = await axios.get(
-          `http://localhost:3002/listsById/${loggedUser?._id}`
+          `${config.LISTS_API}/listsById/${loggedUser?._id}`
         );
         setAllLists(res.data);
         setNewList(res.data);
@@ -84,7 +84,7 @@ function ViewLists() {
   async function listDoneHandler(index, lid, isDone) {
     try {
       const response = await axios.post(
-        `http://localhost:3002/list/isDone/${lid}`
+        `${config.LISTS_API}/list/isDone/${lid}`
       );
       const updatedList = response.data;
 
