@@ -10,8 +10,8 @@ export default function User() {
   const [loggedUser, setLoggedUser] = useAtom(loggedUserAtom);
   const [isLoggedIn, setIsLoggedIn] = useAtom(isLoggedInAtom);
 
-  console.log("LOGGED USER DATA:", loggedUser); // Debugging
-  console.log(loggedUser?.name)
+ console.log("LOGGED USER DATA:", loggedUser);
+console.log("USER TYPE:", typeof loggedUser);
   function logoutHandler() {
     setIsLoggedIn(false);
     setLoggedUser('');
@@ -24,7 +24,8 @@ export default function User() {
     <>
       <Modal opened={opened} onClose={close} title="User Page">
         {/* Correctly accessing the user name */}
-        <p>Hello {loggedUser?.name || "No user logged in"}</p> 
+       <p>Hello {typeof loggedUser === 'object' && loggedUser?.name ? loggedUser.name : "No user logged in"}</p>
+
         <p>Would you like to</p>
         <Button style={{backgroundColor: "#03fc88", color: "black"}} onClick={logoutHandler}>Logout</Button>
       </Modal>

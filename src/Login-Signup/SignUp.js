@@ -34,28 +34,22 @@ export default function SignUp() {
  function handleSignUp() {
   console.log(email + " :email," + name + " :name," + typedPassword + " :password");
 
-  axios.post(`${config.USERS_API}/users`, {
-    name,
-    email,
-    password: typedPassword
-  })
-  .then(res => {
-    console.log(res);
-    console.log(res.data);
-
-    // ✅ Update global state
-    setLoggedUser(res.data);
-    setIsLoggedIn(true);
-
-    // ✅ Close modal
-    close();
-
-    // ✅ Reset form fields
-    setName('');
-    setEmail('');
-    setTypedPassword('');
-    setRetypedPassword('');
-  })
+ axios.post(`${config.USERS_API}/users`, {
+  name,
+  email,
+  password: typedPassword
+})
+.then(res => {
+  console.log(res);
+  const userData = res.data || { name, email }; // fallback if data is empty
+  setLoggedUser(userData);
+  setIsLoggedIn(true);
+  close();
+  setName('');
+  setEmail('');
+  setTypedPassword('');
+  setRetypedPassword('');
+})
   .catch(error => {
     alert(error);
   });
