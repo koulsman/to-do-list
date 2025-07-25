@@ -48,10 +48,12 @@ export default function Login() {
 
     console.log("LOGIN RESPONSE:", response);
 
-    const { name, email, _id } = response.data;
-setLoggedUser({ name, email, _id });
-
-    
+    const userData = {
+  name: response.data.name,
+  email: response.data.email,
+  _id: response.data._id,
+};
+setLoggedUser(userData);
     setIsLoggedIn(true);
 
     // Close modal
