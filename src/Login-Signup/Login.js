@@ -41,20 +41,24 @@ export default function Login() {
   console.log(email + password);
 
   try {
-    const response = await axios.post(`${config.USERS_API}/users/login`, {
-      email,
-      password,
-    });
+  const response = await axios.post(`${config.USERS_API}/users/login`, {
+  email,
+  password,
+});
 
-    console.log("LOGIN RESPONSE:", response);
+// ✅ Ensure response data is what you expect
+if (!response.data || !response.data._id) {
+  throw new Error("Login succeeded but user data is missing.");
+}
 
-    const userData = {
+const userData = {
   name: response.data.name,
   email: response.data.email,
   _id: response.data._id,
 };
+
 setLoggedUser(userData);
-    setIsLoggedIn(true);
+setIsLoggedIn(true);
 
     // Close modal
     close();
