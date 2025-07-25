@@ -32,20 +32,26 @@ function ViewLists() {
   const [newList, setNewList] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(isLoggedInAtom);
   const [allLists, setAllLists] = useState([]);
-  useEffect(() => {
-    async function getLists() {
-      try {
-        const res = await axios.get(
-          `${config.LISTS_API}/listsById/${loggedUser?._id}`
-        );
-        setAllLists(res.data);
-        setNewList(res.data);
-      } catch (err) {
-        console.log(err);
-      }
+ useEffect(() => {
+  async function getLists() {
+    if (!loggedUser || !loggedUser._id) {
+      console.warn("loggedUser is not defined yet.");
+      return;
     }
-    getLists();
-  }, []);
+
+    try {
+      const res = await axios.get(
+        `${config.LISTS_API}/listsById/${loggedUser._id}`
+      );
+      setAllLists(res.data);
+      setNewList(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  getLists();
+}, [loggedUser]); 
 
   useEffect(() => {
     let filtered;
