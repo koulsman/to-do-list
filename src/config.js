@@ -6,8 +6,8 @@ const config = {
     : process.env.REACT_APP_USERS_API_DEV,
 
   LISTS_API: isProduction
-    ? `${process.env.REACT_APP_API_BASE_PROD}/PostServer`
-    : process.env.REACT_APP_POSTS_API_DEV,
+    ? `${process.env.REACT_APP_API_BASE_PROD}/ListServer`
+    : process.env.REACT_APP_LISTS_API_DEV,
 
 
 };
