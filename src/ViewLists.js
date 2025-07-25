@@ -33,30 +33,25 @@ function ViewLists() {
   const [isLoggedIn, setIsLoggedIn] = useState(isLoggedInAtom);
   const [allLists, setAllLists] = useState([]);
 
-    if (!loggedUser || !loggedUser._id) {
-    return <div>Loading your data...</div>; // Optional: navigate("/login") here
-  }
-  
- useEffect(() => {
-  async function getLists() {
-    if (!loggedUser || !loggedUser._id) {
-      console.warn("loggedUser is not defined yet.");
-      return;
+    useEffect(() => {
+    async function getLists() {
+      if (!loggedUser || !loggedUser._id) {
+        console.warn("loggedUser is not defined yet.");
+        return;
+      }
+      try {
+        const res = await axios.get(
+          `${config.LISTS_API}/listsById/${loggedUser._id}`
+        );
+        setAllLists(res.data);
+        setNewList(res.data);
+      } catch (err) {
+        console.log(err);
+      }
     }
 
-    try {
-      const res = await axios.get(
-        `${config.LISTS_API}/listsById/${loggedUser._id}`
-      );
-      setAllLists(res.data);
-      setNewList(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  getLists();
-}, [loggedUser]); 
+    getLists();
+  }, [loggedUser]);
 
   useEffect(() => {
     let filtered;
@@ -71,6 +66,19 @@ function ViewLists() {
 
     setNewList(filtered);
   }, [segmentedControlValue, allLists]);
+
+  useEffect(() => {}, [searchResults]);
+  useEffect(() => {}, [newList]);
+
+  // ✅ Do the check HERE inside the JSX, not above hooks
+  if (!loggedUser || !loggedUser._id) {
+    return (
+      <div>
+        <Navbar />
+        <h1 className="Page">Loading your data...</h1>
+      </div>
+    );
+  }
 
   function searchHandler(typedValue) {
     console.log(typedValue)
