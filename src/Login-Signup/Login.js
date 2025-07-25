@@ -38,23 +38,37 @@ export default function Login() {
   }
   
   async function handleLogin() {
-    // Λογική για το signup
-    console.log(email + password)
-    try {
-      const response = await axios.post(`${config.USERS_API}/users/login`, {
-        email,
-        password,
-      });
-      console.log(response)
-      console.log("success")
-      setLoggedUser(response.data)
-      setIsLoggedIn(true)
-   
-    }
-    catch(error) {
-      console.log(error)
-    }
+  console.log(email + password);
+
+  try {
+    const response = await axios.post(`${config.USERS_API}/users/login`, {
+      email,
+      password,
+    });
+
+    console.log("LOGIN RESPONSE:", response);
+
+    // Extract and validate user data
+    const userData = response.data && typeof response.data === 'object' 
+      ? response.data 
+      : { name, email };
+
+    // Set global state
+    setLoggedUser(userData);
+    setIsLoggedIn(true);
+
+    // Close modal
+    close();
+
+    // Reset form
+    setName('');
+    setEmail('');
+    setPassword('');
+  } catch (error) {
+    console.error("Login error:", error);
+    alert("Login failed. Please check your credentials.");
   }
+}
   
   function TypedPassword(password)  {
    setPassword(password);
