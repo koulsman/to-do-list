@@ -71,15 +71,7 @@ function ViewLists() {
   useEffect(() => {}, [newList]);
 
   // ✅ Do the check HERE inside the JSX, not above hooks
-  if (!loggedUser || !loggedUser._id) {
-    return (
-      <div>
-        <Navbar />
-        <h1 className="Page">Loading your data...</h1>
-      </div>
-    );
-  }
-  
+ 
 
   function searchHandler(typedValue) {
     console.log(typedValue)
@@ -124,7 +116,15 @@ function ViewLists() {
   // });
 
   useEffect(() => {}, [newList]);
-
+ if (!loggedUser || !loggedUser._id) {
+    return (
+      <div>
+        <Navbar />
+        <h1 className="Page">Loading your data...</h1>
+      </div>
+    );
+  }
+  
   return (
     <div>
       <header className="View-header">
