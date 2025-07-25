@@ -32,6 +32,11 @@ function ViewLists() {
   const [newList, setNewList] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(isLoggedInAtom);
   const [allLists, setAllLists] = useState([]);
+
+    if (!loggedUser || !loggedUser._id) {
+    return <div>Loading your data...</div>; // Optional: navigate("/login") here
+  }
+  
  useEffect(() => {
   async function getLists() {
     if (!loggedUser || !loggedUser._id) {
