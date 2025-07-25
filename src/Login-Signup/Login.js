@@ -48,13 +48,10 @@ export default function Login() {
 
     console.log("LOGIN RESPONSE:", response);
 
-    // Extract and validate user data
-    const userData = response.data && typeof response.data === 'object' 
-      ? response.data 
-      : { name, email };
+    const { name, email, _id } = response.data;
+setLoggedUser({ name, email, _id });
 
-    // Set global state
-    setLoggedUser(userData);
+    
     setIsLoggedIn(true);
 
     // Close modal
