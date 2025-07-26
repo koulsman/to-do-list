@@ -111,6 +111,7 @@ function ViewAndEditList() {
                     // marginTop: "2.6em",
                     background: "#03fc88",
                     borderRadius: "50%",
+                    margin: "auto"
                   }}
                   src={addListItem}
                   alt="Add List Item"
