@@ -57,6 +57,7 @@ const userData = {
   _id: response.data._id,
 };
 
+
 setLoggedUser(userData);
 setIsLoggedIn(true);
 
