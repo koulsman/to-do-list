@@ -98,7 +98,7 @@ useEffect(() => {
  </Button>
       </Modal>
 
-<Button style={{backgroundColor: "#03fc88", color: "black"}} variant="default" onClick={open} >
+<Button style={{backgroundColor: "#03fc88", color: "black", margin: "auto"}} variant="default" onClick={open} >
         Sign Up
       </Button>
 
