@@ -152,12 +152,12 @@ function CreateList() {
             </div>
             <div>
               {list.map((x, index) => (
-                <ListItem
-                  listItem={x}
-                  key={index}
-                  index={index}
-                  setList={setList}
-                />
+              <ListItem
+  listItem={x}
+  key={index}
+  index={index}
+  setList={setList} 
+/>
               ))}
             </div>
             <div>
