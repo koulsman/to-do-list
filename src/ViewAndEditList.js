@@ -104,6 +104,9 @@ function ViewAndEditList() {
             <Card name={selectedList.list_title} >
               <div className="list">
                 {/* <button onClick={() => setVisible(isVisible => !isVisible)}>Edit the list</button> */}
+                <div style={{display: "flex", margin: "auto"}}>
+
+               
                 <img
                   style={{
                     height: "2em",
@@ -126,7 +129,7 @@ function ViewAndEditList() {
                 setList={setList}
               ></ListItem>
             ))} */}
-
+                 </div>
                 {Array.isArray(selectedList.list_items) &&
                   selectedList.list_items.map((element, index) => (
                     <ListItem
