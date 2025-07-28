@@ -32,7 +32,9 @@ export default function DeleteListModal({selectedList}) {
     <>
       <Modal opened={opened} onClose={close} title="Are you sure you want to delete this list?">
         {/* Modal content */}
+        <div style = {{margin: "auto"}} >
         <Button style={{margin: "auto", backgroundColor: "#03fc88", color: "black"}} onClick={deleteList}>yes,delete this list</Button>
+        </div>
       </Modal>
 
       
