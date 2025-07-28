@@ -62,11 +62,13 @@ Create list
 ### View Lists
 
 After succesfully creating a list, the user is redirected to View Lists, where he can view all the lists created by him, including the newlly created list. At the top there is a small navbar for redirection to Create List / Main Menu. Bellow that, there is a search bar, where the user can search a specific list. 
+
 <img width="903" height="771" alt="ViewLists" src="https://github.com/user-attachments/assets/e604d1e1-8e0e-4db9-8b37-8f18cb27f848" />
 
 View Lists
 
 The search bar is case-insensitive, allowing you to find lists regardless of whether you use uppercase or lowercase letters. By typing the name of your list, the component will automatically filter the results.
+
 <img width="517" height="641" alt="search" src="https://github.com/user-attachments/assets/2a258b76-27c6-46a7-90ee-a0665bcf6c36" />
 
 Search lists
