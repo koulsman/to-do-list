@@ -5,6 +5,7 @@ This is a project app, created with the MERN stack (MongoDB, Express js, React a
 ## Main Menu
 
 The Main Menu includes two primary options—Create List and View Your Lists—along with Login/Signup access and an Information button.
+
 <img width="829" height="760" alt="main_menu" src="https://github.com/user-attachments/assets/630fa94c-e93a-499b-af7a-5b0bc93091f9" />
 
 
