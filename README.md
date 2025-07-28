@@ -1,18 +1,21 @@
 # To Do List
 
 This is a project app, created with the MERN stack (MongoDB, Express js, React and Node.js) for creating, saving and editing lists. 
+https://to-do-list-esdn.onrender.com/
 
 ## Main Menu
 
 The Main Menu includes two primary options—Create List and View Your Lists—along with Login/Signup access and an Information button.
 
 <img width="829" height="760" alt="main_menu" src="https://github.com/user-attachments/assets/630fa94c-e93a-499b-af7a-5b0bc93091f9" />
+
 Main Menu 
 
 
 It is mandatory to login/sign up as a user, to be able to create and save a list. Initially, the app was created with a local storage and not with a database and the user could save his information and lists to the browser. But, that was changed, making way to a more flexible approach, where the user could access his lists in any device he chose to. If the user doesn't login / sign up, a prompt will appear when he'll try to access the app components: 
 
 <img width="548" height="607" alt="prompt" src="https://github.com/user-attachments/assets/d1826dfc-c6ab-4dd5-b070-d3d6d247e1c0" />
+
 Login / Sign up prompt
 
 
@@ -21,6 +24,9 @@ To Login, the user can simply tap the login button option. There, he will be gui
 <img width="1001" height="751" alt="login" src="https://github.com/user-attachments/assets/610dd122-d28a-42fb-9375-28f47f2dc8ad" />
 Login
 
+<img width="909" height="751" alt="login_default" src="https://github.com/user-attachments/assets/770f4b2d-7330-40e1-93e8-4d7a366ecae1" />
+
+Login as default user
 
 If the user doesn't have an account, he can simply tap on the Sign Up button, where he can create his own account. All passwords in the To-Do-List are securely encrypted, ensuring that your information remains protected and eliminating any risk of unauthorized access.
 
