@@ -8,6 +8,23 @@ The Main Menu includes two primary options—Create List and View Your Lists—a
 
 <img width="829" height="760" alt="main_menu" src="https://github.com/user-attachments/assets/630fa94c-e93a-499b-af7a-5b0bc93091f9" />
 
+It is mandatory to login/sign up as a user, to be able to create and save a list. Initially, the app was created with a local storage and not with a database and the user could save his information and lists to the browser. But, that was changed, making way to a more flexible approach, where the user could access his lists in any device he chose to. If the user doesn't login / sign up, a prompt will appear when he'll try to access the app components: 
+
+<img width="548" height="607" alt="prompt" src="https://github.com/user-attachments/assets/d1826dfc-c6ab-4dd5-b070-d3d6d247e1c0" />
+
+To Login, the user can simply tap the login button option. There, he will be guided to a modal, where he can either login as a default user, or log in with his personal information (name, email and password).
+
+<img width="1001" height="751" alt="login" src="https://github.com/user-attachments/assets/610dd122-d28a-42fb-9375-28f47f2dc8ad" />
+
+If the user doesn't have an account, he can simply tap on the Sign Up button, where he can create his own account. All passwords in the To-Do-List are securely encrypted, ensuring that your information remains protected and eliminating any risk of unauthorized access.
+
+<img width="747" height="731" alt="signup" src="https://github.com/user-attachments/assets/2b76875b-ee15-407e-8d64-d7a4f239a0e9" />
+
+After the user has successfully logged in / signed up , the login button will display his name, prompting him to access and edit his lists.
+
+<img width="883" height="737" alt="mainmenu_default" src="https://github.com/user-attachments/assets/bef720eb-2d6a-4adc-b7a1-6103447d8f66" />
+
+
 
 ### `npm start`
 
