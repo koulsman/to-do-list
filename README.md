@@ -80,10 +80,22 @@ Also, the user-created-lists are shown. By clicking the left button on each list
 
 Hovered List
 
-### `npm run build`
+### View and Edit List
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+By clicking on a specific list, the user will be redirected to ViewAndEditList component. There, he will be able to manipulate the list, changing/ deleting or adding list items, or even deleting the whole list. Also, two navbar options appear: View your Lists and Main Menu.
+
+<img width="563" height="871" alt="ViewAndEditlist" src="https://github.com/user-attachments/assets/3fee7c64-1969-440c-b1e1-861b97a1b8b8" />
+
+View and Edit List
+
+<img width="653" height="879" alt="ViewAndEditListEdited" src="https://github.com/user-attachments/assets/8e0a3954-2b0f-4cf9-a7ec-e5cc67a3fcbc" />
+
+View and Edit List Edited
+
+To succesfully save your changes, all that is needed is to tap the submit button on the bottom of the list.
+
+If the user want to delete the list, all he has to do is tap the green trash icon.
+
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
