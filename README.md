@@ -1,10 +1,12 @@
-# Getting Started with Create React App
+# To Do List
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a project app, created with the MERN stack (MongoDB, Express js, React and Node.js) for creating, saving and editing lists. 
 
-## Available Scripts
+## Main Menu
 
-In the project directory, you can run:
+The Main Menu includes two primary options—Create List and View Your Lists—along with Login/Signup access and an Information button.
+<img width="829" height="760" alt="main_menu" src="https://github.com/user-attachments/assets/630fa94c-e93a-499b-af7a-5b0bc93091f9" />
+
 
 ### `npm start`
 
