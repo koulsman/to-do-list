@@ -33,6 +33,7 @@ Login as default user
 If the user doesn't have an account, he can simply tap on the Sign Up button, where he can create his own account. All passwords in the To-Do-List are securely encrypted, ensuring that your information remains protected and eliminating any risk of unauthorized access.
 
 <img width="747" height="731" alt="signup" src="https://github.com/user-attachments/assets/2b76875b-ee15-407e-8d64-d7a4f239a0e9" />
+
 Signup
 
 
@@ -40,15 +41,23 @@ After the user has successfully logged in / signed up , the login button will di
 
 <img width="883" height="737" alt="mainmenu_default" src="https://github.com/user-attachments/assets/bef720eb-2d6a-4adc-b7a1-6103447d8f66" />
 
+Main Menu when user is logged in.
+
+Also, in the bottom corner of the App, there is a info button, where the user can learn about the functionality of the App.
 
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+
+### Create List
+
+By clicking the Create List card, the user will be redirected to the list creation page, where he can add a title and list items for his list. By clicking submit list, his list is created and saved in the database. Also , there are two buttons at the top, for redirection to View Lists / Main  Menu.
+
+<img width="776" height="822" alt="createlist" src="https://github.com/user-attachments/assets/c99d3afc-781d-423e-aae3-7bbc2c0f7703" />
+
+Create list
+
+
 
 ### `npm test`
 
