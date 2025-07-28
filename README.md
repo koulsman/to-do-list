@@ -22,6 +22,8 @@ Login / Sign up prompt
 To Login, the user can simply tap the login button option. There, he will be guided to a modal, where he can either login as a default user, or log in with his personal information (name, email and password).
 
 <img width="1001" height="751" alt="login" src="https://github.com/user-attachments/assets/610dd122-d28a-42fb-9375-28f47f2dc8ad" />
+
+
 Login
 
 <img width="909" height="751" alt="login_default" src="https://github.com/user-attachments/assets/770f4b2d-7330-40e1-93e8-4d7a366ecae1" />
