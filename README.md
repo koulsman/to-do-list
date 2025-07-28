@@ -59,10 +59,24 @@ Create list
 
 
 
-### `npm test`
+### View Lists
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+After succesfully creating a list, the user is redirected to View Lists, where he can view all the lists created by him, including the newlly created list. At the top there is a small navbar for redirection to Create List / Main Menu. Bellow that, there is a search bar, where the user can search a specific list. 
+<img width="903" height="771" alt="ViewLists" src="https://github.com/user-attachments/assets/e604d1e1-8e0e-4db9-8b37-8f18cb27f848" />
+
+View Lists
+
+The search bar is case-insensitive, allowing you to find lists regardless of whether you use uppercase or lowercase letters. By typing the name of your list, the component will automatically filter the results.
+<img width="517" height="641" alt="search" src="https://github.com/user-attachments/assets/2a258b76-27c6-46a7-90ee-a0665bcf6c36" />
+
+Search lists
+
+
+Also, the user-created-lists are shown. By clicking the left button on each list, the list will become done. By hovering each list, the list items will be shown, providing the required information about the list.
+
+<img width="669" height="856" alt="ViewLists_Hovered" src="https://github.com/user-attachments/assets/15f94b81-197b-4b77-99d6-3bae330f5ede" />
+
+Hovered List
 
 ### `npm run build`
 
